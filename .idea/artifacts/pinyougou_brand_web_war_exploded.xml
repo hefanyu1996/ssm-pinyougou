@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="pinyougou-brand-web:war exploded">
+    <output-path>$PROJECT_DIR$/pinyougou-parent-module/pinyougou-brand-web/target/pinyougou-brand-web</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>pinyougou-brand-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="pinyougou-manager-web" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/pinyougou-parent-module/pinyougou-manager-web/target/pinyougou-brand-web/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="pinyougou-manager-web/web/Web" />
+    </root>
+  </artifact>
+</component>
