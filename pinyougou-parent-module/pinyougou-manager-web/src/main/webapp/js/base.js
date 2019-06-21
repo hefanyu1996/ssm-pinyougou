@@ -1,1 +1,1 @@
-var app = angular.module('brandApp', []);
+var app = angular.module('pinyougou', []);

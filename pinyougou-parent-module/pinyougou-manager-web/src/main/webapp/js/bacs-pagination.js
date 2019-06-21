@@ -1,1 +1,1 @@
-var app = angular.module('brandApp', ['pagination']);
+var app = angular.module('pinyougou', ['pagination']);
