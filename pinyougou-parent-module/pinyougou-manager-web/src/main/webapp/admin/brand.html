@@ -18,15 +18,51 @@
     <script src="../plugins/angularjs/pagination.js"></script>
     <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
     <!-- angular JS分页组件 -->
+
+    <!-- 引用外部js模块 -->
+    <script src="../js/bacs-pagination.js"></script>
+    <script src="../js/service/brandService.js"></script>
+    <script src="../js/controller/brandController.js"></script>
+
     <script>
-        var app = angular.module('brandApp', ['pagination']);
-        app.controller('brandController', function ($scope, $http) {
+        // var app = angular.module('brandApp', ['pagination']);
+
+       /* app.service('brandService',function ($http) {
+            this.search = function (currPage,pageSize,searchEntity) {
+                return $http.get('../brand/search.do?currPage=' + currPage + '&pageSize=' + pageSize,searchEntity)
+            };
+
+
+            this.save = function (entity) {
+                return $http.post('../brand/save.do', entity);
+            };
+
+            this.update = function (entity) {
+                return $http.post('../brand/update.do', entity);
+            };
+
+
+            this.findOne = function (id) {
+                return $http.get("../brand/findOne.do?id=" + id);
+            };
+
+
+            this.remove = function (selectIds) {
+                return $http.get("../brand/remove.do?ids=" + selectIds)
+            };
+
+        });*/
+
+
+        /*app.controller('brandController', function ($scope, $http) {
             //查询所有
             $scope.reloadList = function () {
                 $scope.search(
                     $scope.paginationConf.currentPage,
                     $scope.paginationConf.itemsPerPage
                 );
+                //每次删除操作后清空id数组
+                $scope.selectIds = [];
             };
 
             //分页属性配置
@@ -39,24 +75,24 @@
                     $scope.reloadList();//重新加载
                 }
             };
-            //分页查询
-            $scope.findPage = function (currPage, pageSize) {
+            //分页查询(已代替)
+            /!*$scope.findPage = function (currPage, pageSize) {
                 $http.get('../brand/findByPage.do?currPage=' + currPage + '&pageSize=' + pageSize).success(
                     function (data) {
                         $scope.list = data.rows;
                         $scope.paginationConf.totalItems = data.total;//更新总记录数
                     }
                 );
-            };
+            };*!/
 
             //新增/修改品牌
             $scope.save = function () {
-                var methodName = 'save';
+                var object = brandService.save($scope.entity);
                 if ($scope.entity.id != null) {
-                    methodName = 'update';
+                    object = brandService.update($scope.entity);
                 }
 
-                $http.post('../brand/' + methodName + '.do', $scope.entity).success(
+                object.success(
                     function (data) {
                         if (data.success) {
                             $scope.reloadList();//重新加载
@@ -69,7 +105,7 @@
 
             //修改回显
             $scope.findOne = function (id) {
-                $http.get("../brand/findOne.do?id=" + id).success(
+                brandService.findOne(id).success(
                     function (data) {
                         $scope.entity = data;
                     }
@@ -111,7 +147,7 @@
             $scope.remove = function () {
 
                 if (confirm("确定要删除吗?")) {
-                    $http.get("../brand/remove.do?ids=" + $scope.selectIds).success(
+                    brandService.remove($scope.selectIds).success(
                         function (data) {
                             if (data.success) {
                                 $scope.reloadList();
@@ -122,6 +158,8 @@
                         }
                     )
                 }
+                //每次删除操作后情况id数组（建议将此操作放入reloadList）
+                // $scope.selectIds = [];
             };
 
             //查询条件
@@ -129,7 +167,7 @@
 
             //条件分页查询
             $scope.search = function (currPage,pageSize) {
-                $http.post('../brand/search.do?currPage=' + currPage + '&pageSize=' + pageSize ,$scope.searchEntity).success(
+                brandService.search(currPage,pageSize,$scope.searchEntity).success(
                     function (data) {
                         $scope.list = data.rows;
                         $scope.paginationConf.totalItems = data.total;//更新总记录数
@@ -137,8 +175,7 @@
                 )
             }
 
-
-        });
+        });*/
     </script>
 </head>
 <body class="hold-transition skin-red sidebar-mini" ng-app="brandApp" ng-controller="brandController">
@@ -146,7 +183,7 @@
 <div class="box-header with-border">
     <h3 class="box-title">品牌管理</h3>
 </div>
-
+<!--{{selectIds}}-->
 <div class="box-body">
 
     <!-- 数据表格 -->
