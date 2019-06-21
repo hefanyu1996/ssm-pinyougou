@@ -1,6 +1,6 @@
 app.service('brandService',function ($http) {
     this.search = function (currPage,pageSize,searchEntity) {
-        return $http.get('../brand/search.do?currPage=' + currPage + '&pageSize=' + pageSize,searchEntity)
+        return $http.post('../brand/search.do?currPage=' + currPage + '&pageSize=' + pageSize,searchEntity)
     };
 
 

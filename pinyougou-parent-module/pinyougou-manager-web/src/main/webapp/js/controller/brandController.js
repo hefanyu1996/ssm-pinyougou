@@ -1,4 +1,4 @@
-app.controller('brandController', function ($scope, $http) {
+app.controller('brandController', function ($scope, $http,brandService) {
     //查询所有
     $scope.reloadList = function () {
         $scope.search(
