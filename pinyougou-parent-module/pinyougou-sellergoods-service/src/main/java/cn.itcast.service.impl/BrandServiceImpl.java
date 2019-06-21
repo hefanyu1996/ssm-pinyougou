@@ -48,7 +48,7 @@ public class BrandServiceImpl implements BrandService {
         //查询记录
         Page<TbBrand> page = (Page<TbBrand>) tbBrandMapper.selectByExample(null);
         //将总记录数 和 当前页数据进行封装 返回
-        PageResult<TbBrand> tbBrandPageResult = new PageResult<TbBrand>(page.getResult(), page.getTotal());
+        PageResult<TbBrand> tbBrandPageResult = new PageResult<TbBrand>(page.getTotal(), page.getResult());
         return tbBrandPageResult;
 
     }
@@ -121,7 +121,7 @@ public class BrandServiceImpl implements BrandService {
         }
         Page<TbBrand> page = (Page<TbBrand>) tbBrandMapper.selectByExample(example);
 
-        return new PageResult<TbBrand>(page.getResult(), page.getTotal());
+        return new PageResult<TbBrand>(page.getTotal(), page.getResult());
 
     }
 
