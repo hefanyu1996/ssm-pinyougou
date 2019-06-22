@@ -65,6 +65,7 @@ http://www.springframework.org/schema/security/spring-security.xsd">
                              logout-success-url="/pages/login.jsp"/>-->
             <!-- 关闭CSRF,默认是开启的 -->
             <security:csrf disabled="true"/>
+
             <security:headers>
                 <security:frame-options policy="SAMEORIGIN" />
             </security:headers>
