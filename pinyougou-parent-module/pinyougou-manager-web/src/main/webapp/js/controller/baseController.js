@@ -1,4 +1,4 @@
-app.controller('baseController',function ($scope) {
+app.controller('baseController', function ($scope) {
 
     //分页控件配置
     $scope.paginationConf = {
@@ -52,15 +52,18 @@ app.controller('baseController',function ($scope) {
     };
 
     $scope.json2String = function (jsonString, key) {
-        var json = JSON.parse(jsonString);
         var value = "";
-        for(var i = 0 ; i<json,length ;i++){
-            if(i>0){
-                value += ",";
-            }
-                value += json[i][key];
-        }
+        if (jsonString != null) {
 
+            var json = JSON.parse(jsonString);
+
+            for (var i = 0; i < json.length; i++) {
+                if (i > 0) {
+                    value += "，";
+                }
+                value += json[i][key];
+            }
+        }
         return value;
     }
 

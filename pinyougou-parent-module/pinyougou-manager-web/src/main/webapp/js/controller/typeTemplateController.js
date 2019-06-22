@@ -26,7 +26,10 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.findOne=function(id){				
 		typeTemplateService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response;
+				$scope.entity.brandIds = JSON.parse($scope.entity.brandIds);
+				$scope.entity.specIds  = JSON.parse($scope.entity.specIds);
+				$scope.entity.customAttributeItems  = JSON.parse($scope.entity.customAttributeItems);
 			}
 		);				
 	}
@@ -53,16 +56,19 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
-		//获取选中的复选框			
-		typeTemplateService.dele( $scope.selectIds ).success(
-			function(response){
-				if(response.success){
-					$scope.reloadList();//刷新列表
-					$scope.selectIds=[];
-				}						
-			}		
-		);				
+	$scope.dele=function(){
+		if(confirm("确认要删除吗?")){
+			//获取选中的复选框
+			typeTemplateService.dele( $scope.selectIds ).success(
+				function(response){
+					if(response.success){
+						$scope.reloadList();//刷新列表
+						$scope.selectIds=[];
+					}
+				}
+			);
+		}
+
 	}
 	
 	$scope.searchEntity={};//定义搜索对象 
@@ -78,9 +84,23 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	}
 
 
+	//定义模板组合json对象
+	$scope.entity={brandIds:[],specIds:[],customAttributeItems:[]};
+	//新增扩展属性行
+	$scope.addTableRow = function(){
+		$scope.entity.customAttributeItems.push({});
+	}
+
+	//删除扩展属性行
+	$scope.deleTableRow = function(index){
+		$scope.entity.customAttributeItems.splice(index,1)
+	}
+
+
+	//定义品牌集合
 	$scope.brandList={data:[]};
 
-
+	//品牌下拉列表
 	$scope.findBrandList = function(){
 		brandService.selectOptionList().success(
 			function (data) {
@@ -89,9 +109,9 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 		)
 	}
 
-
+	//定义规格集合
 	$scope.specList={data:[]};
-
+	//规格下拉列表
 	$scope.findSpecificationList = function(){
 		specificationService.selectOptionList().success(
 			function (data) {
@@ -101,6 +121,8 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	}
 
 
-	$scope.entity={brandIds:[],customAttributeItems:[]};
+
+
+
 
 });	
