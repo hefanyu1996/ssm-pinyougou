@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pojogroup.Specification;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * controller
  * @author Administrator
@@ -109,6 +111,11 @@ public class SpecificationController {
 	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbSpecification specification, int page, int rows  ){
 		return specificationService.findPage(specification, page, rows);		
+	}
+
+	@RequestMapping("/selectOptionList.do")
+	public List<Map<Long,String>> selectOptionList(){
+		return specificationService.selectOptionList();
 	}
 	
 }

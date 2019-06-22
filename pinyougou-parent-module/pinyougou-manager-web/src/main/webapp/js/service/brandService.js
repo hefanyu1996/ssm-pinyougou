@@ -19,7 +19,11 @@ app.service('brandService',function ($http) {
 
 
     this.remove = function (selectIds) {
-        return $http.get("../brand/remove.do?ids=" + selectIds)
+        return $http.get("../brand/remove.do?ids=" + selectIds);
+    };
+
+    this.selectOptionList = function () {
+        return $http.get("../brand/selectOptionList.do");
     };
 
 });

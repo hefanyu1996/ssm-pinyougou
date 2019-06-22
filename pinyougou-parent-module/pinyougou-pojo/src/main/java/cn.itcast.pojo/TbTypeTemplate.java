@@ -1,6 +1,8 @@
 package cn.itcast.pojo;
 
-public class TbTypeTemplate {
+import java.io.Serializable;
+
+public class TbTypeTemplate implements Serializable {
     private Long id;
 
     private String name;

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 品牌服务层
@@ -123,6 +124,15 @@ public class BrandServiceImpl implements BrandService {
 
         return new PageResult<TbBrand>(page.getTotal(), page.getResult());
 
+    }
+
+    /**
+     * 查询品牌下拉列表
+     * @return
+     */
+    @Override
+    public List<Map<Long, String>> selectOptionList() {
+        return tbBrandMapper.selectOptionList();
     }
 
 

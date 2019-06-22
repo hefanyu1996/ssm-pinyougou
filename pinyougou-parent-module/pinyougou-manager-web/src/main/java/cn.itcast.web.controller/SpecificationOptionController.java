@@ -100,7 +100,7 @@ public class SpecificationOptionController {
 	
 		/**
 	 * 查询+分页
-	 * @param brand
+	 * @param specificationOption
 	 * @param page
 	 * @param rows
 	 * @return

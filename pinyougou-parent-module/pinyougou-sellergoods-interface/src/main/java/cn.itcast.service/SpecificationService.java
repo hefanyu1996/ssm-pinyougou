@@ -1,5 +1,7 @@
 package cn.itcast.service;
 import java.util.List;
+import java.util.Map;
+
 import cn.itcast.pojo.TbSpecification;
 
 import entity.PageResult;
@@ -59,5 +61,13 @@ public interface SpecificationService {
 	 * @return
 	 */
 	public PageResult findPage(TbSpecification specification, int pageNum,int pageSize);
+
+
+	/**
+	 * 类型模板下拉列表
+	 *
+	 * @return
+	 */
+	public List<Map<Long,String>> selectOptionList();
 	
 }

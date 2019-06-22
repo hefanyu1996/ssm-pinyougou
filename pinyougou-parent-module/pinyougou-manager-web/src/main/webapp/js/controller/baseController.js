@@ -51,6 +51,17 @@ app.controller('baseController',function ($scope) {
         }
     };
 
+    $scope.json2String = function (jsonString, key) {
+        var json = JSON.parse(jsonString);
+        var value = "";
+        for(var i = 0 ; i<json,length ;i++){
+            if(i>0){
+                value += ",";
+            }
+                value += json[i][key];
+        }
 
+        return value;
+    }
 
 });
