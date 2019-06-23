@@ -2,6 +2,7 @@ package cn.itcast.web.controller;
 import cn.itcast.pojo.TbSeller;
 import cn.itcast.service.SellerService;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Service;
 import entity.PageResult;
 import entity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -105,9 +106,28 @@ public class SellerController {
 	 * @param rows
 	 * @return
 	 */
-	@RequestMapping("/search")
+	@RequestMapping("/search.do")
 	public PageResult search(@RequestBody TbSeller seller, int page, int rows  ){
 		return sellerService.findPage(seller, page, rows);		
+	}
+
+
+	/**
+	 * 修改商家状态
+	 * @param sellerId
+	 * @param status
+	 * @return
+	 */
+	@RequestMapping("/updateStatus.do")
+	public Result updateStatus(String sellerId,String status){
+		try {
+			sellerService.updateStatus(sellerId,status);
+			return new Result(true,"商家状态设置成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false,"服务器正忙");
+		}
+
 	}
 	
 }

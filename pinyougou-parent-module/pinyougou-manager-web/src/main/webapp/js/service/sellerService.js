@@ -25,8 +25,10 @@ app.service('sellerService',function($http){
 	this.dele=function(ids){
 		return $http.get('../seller/delete.do?ids='+ids);
 	}
-	//搜索
-	this.search=function(page,rows,searchEntity){
-		return $http.post('../seller/search.do?page='+page+"&rows="+rows, searchEntity);
-	}    	
+
+
+	//商家审核
+	this.updateStatus = function (sellerId,status) {
+		return $http.get('../seller/updateStatus.do?sellerId='+sellerId+'&status='+status);
+	}
 });

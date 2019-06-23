@@ -1,5 +1,6 @@
 package cn.itcast.service.impl;
 import cn.itcast.dao.TbSellerMapper;
+import cn.itcast.pojo.TbBrand;
 import cn.itcast.pojo.TbSeller;
 import cn.itcast.pojo.TbSellerExample;
 import cn.itcast.service.SellerService;
@@ -8,7 +9,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +20,7 @@ import java.util.List;
  *
  */
 @Service
+@Transactional
 public class SellerServiceImpl implements SellerService {
 
 	@Autowired
@@ -45,6 +49,8 @@ public class SellerServiceImpl implements SellerService {
 	 */
 	@Override
 	public void add(TbSeller seller) {
+		seller.setStatus("0");
+		seller.setCreateTime(new Date());//申请日期
 		sellerMapper.insert(seller);		
 	}
 
@@ -158,5 +164,21 @@ public class SellerServiceImpl implements SellerService {
 		Page<TbSeller> page= (Page<TbSeller>)sellerMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+
+	/**
+	 * 修改商家状态
+	 * @param sellerId
+	 * @param status
+	 */
+	@Override
+	public void updateStatus(String sellerId, String status) {
+
+		TbSeller tbSeller = sellerMapper.selectByPrimaryKey(sellerId);
+		tbSeller.setStatus(status);
+
+		sellerMapper.updateByPrimaryKey(tbSeller);
+
+	}
+
 }

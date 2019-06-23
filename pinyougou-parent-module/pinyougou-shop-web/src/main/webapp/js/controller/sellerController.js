@@ -9,9 +9,8 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 	$scope.add=function(){
 
 		var protocolCb = document.getElementById('protocol_cb');
-		alert(protocolCb.checked);
 		if(protocolCb.checked){
-			sellerService.add().success(
+			sellerService.add($scope.entity).success(
 				function(response){
 					if(response.success){
 						//跳转登录页
@@ -29,7 +28,7 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 
 	//修改
 	$scope.update=function(){
-		sellerService.update().success(
+		sellerService.update($scope.entity).success(
 			function(response){
 				if(response.success){
 					//跳转登录页
@@ -40,6 +39,8 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			}
 		);
 	}
+
+
 
     
 });	

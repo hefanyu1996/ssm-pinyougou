@@ -9,18 +9,23 @@
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="css/pages-register.css" />
 
-	<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
+	<script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
+	<script type="text/javascript" src="js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
+	<!--<script type="text/javascript" src="js/pages/register.js"></script>-->
 
-
+	<!-- 引入jQuery&bootstrap -->
+	<script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
 	<!-- 引入angularJS -->
-	<script src="/plugins/angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="/plugins/angularjs/angular.min.js"></script>
 
 	<!-- 引入外部模块js -->
-	<script src="js/base.js"></script>
-	<script src="js/service/sellerService.js"></script>
-	<script src="js/controller/baseController.js"></script>
-	<script src="js/controller/sellerController.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+	<script type="text/javascript" src="js/service/sellerService.js"></script>
+	<script type="text/javascript" src="js/controller/baseController.js"></script>
+	<script type="text/javascript" src="js/controller/sellerController.js"></script>
 	<!-- 引入外部模块js -->
 
 
@@ -154,7 +159,7 @@
 					<div class="control-group">
 						<label class="control-label" for="input_bank">开户行支行：</label>
 						<div class="controls">
-							<input type="text" placeholder="开户行支行" class="input-xfat input-xlarge" id="input_bank" >
+							<input type="text" placeholder="开户行支行" class="input-xfat input-xlarge" id="input_bank" ng-model="entity.brife">
 						</div>
 					</div>
 
@@ -174,7 +179,7 @@
 					<div class="control-group">
 						<label class="control-label"></label>
 						<div class="controls btn-reg">
-							<a class="sui-btn btn-block btn-xlarge btn-danger" href="javascript:;" target="_blank" ng-click="save()" >申请入驻</a>
+							<a class="sui-btn btn-block btn-xlarge btn-danger" href="javascript:;" target="_blank" ng-click="add()" >申请入驻</a>
 						</div>
 					</div>
 				</form>
@@ -199,12 +204,6 @@
 		</div>
 	</div>
 
-
-<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
-<script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
-<script type="text/javascript" src="js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
-<script type="text/javascript" src="js/pages/register.js"></script>
 </body>
 
 </html>

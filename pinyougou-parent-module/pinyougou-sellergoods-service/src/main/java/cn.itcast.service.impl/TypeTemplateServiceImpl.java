@@ -1,5 +1,8 @@
 package cn.itcast.service.impl;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
@@ -105,5 +108,6 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 		Page<TbTypeTemplate> page= (Page<TbTypeTemplate>)typeTemplateMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
+
 	
 }
