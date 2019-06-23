@@ -61,8 +61,7 @@ http://www.springframework.org/schema/security/spring-security.xsd">
             />
             <!-- 登出， invalidate-session 是否删除session logout-url：登出处理链接 logout-successurl：登出成功页面
             注：登出操作 只需要链接到 logout即可登出当前用户 -->
-            <!--<security:logout invalidate-session="true" logout-url="/logout.do"
-                             logout-success-url="/pages/login.jsp"/>-->
+            <security:logout invalidate-session="true" logout-url="/logout.do" logout-success-url="/login.html"/>
             <!-- 关闭CSRF,默认是开启的 -->
             <security:csrf disabled="true"/>
 

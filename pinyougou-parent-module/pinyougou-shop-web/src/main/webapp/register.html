@@ -8,9 +8,26 @@
 	<title>商家入驻申请</title>
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="css/pages-register.css" />
+
+	<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+
+
+	<!-- 引入angularJS -->
+	<script src="/plugins/angularjs/angular.min.js"></script>
+
+	<!-- 引入外部模块js -->
+	<script src="js/base.js"></script>
+	<script src="js/service/sellerService.js"></script>
+	<script src="js/controller/baseController.js"></script>
+	<script src="js/controller/sellerController.js"></script>
+	<!-- 引入外部模块js -->
+
+
+
 </head>
 
-<body>
+<body ng-app="pinyougou" ng-controller="sellerController">
 	<div class="register py-container ">
 		<!--head-->
 		<div class="logoArea">
@@ -23,141 +40,141 @@
 				<form class="sui-form form-horizontal">
 				
 					<div class="control-group">
-						<label class="control-label">登陆名（不可修改）：</label>
+						<label class="control-label" for="input_username">登陆名（不可修改）：</label>
 						<div class="controls">
-							<input type="text" placeholder="登陆名" class="input-xfat input-xlarge">
+							<input type="text" placeholder="登陆名" class="input-xfat input-xlarge" id="input_username" ng-model="entity.sellerId">
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">登陆密码：</label>
+						<label class="control-label" for="input_password">登陆密码：</label>
 						<div class="controls">
-							<input type="password" placeholder="登陆密码" class="input-xfat input-xlarge">
+							<input type="password" placeholder="登陆密码" class="input-xfat input-xlarge" id="input_password" ng-model="entity.password">
 						</div>
 					</div>
 				
 					<div class="control-group">
-						<label class="control-label">店铺名称：</label>
+						<label class="control-label" for="input_store_name">店铺名称：</label>
 						<div class="controls">
-							<input type="text" placeholder="店铺名称" class="input-xfat input-xlarge">
+							<input type="text" placeholder="店铺名称" class="input-xfat input-xlarge" id="input_store_name" ng-model="entity.nickName">
 						</div>
 					</div>
 				
 					<div class="control-group">
-						<label class="control-label">公司名称：</label>
+						<label class="control-label" for="input_company_name">公司名称：</label>
 						<div class="controls">
-							<input type="text" placeholder="公司名称" class="input-xfat input-xlarge">
+							<input type="text" placeholder="公司名称" class="input-xfat input-xlarge" id="input_company_name" ng-model="entity.name" >
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">公司电话：</label>
+						<label class="control-label" for="input_company_tel">公司电话：</label>
 						<div class="controls">
-							<input type="text" placeholder="公司电话" class="input-xfat input-xlarge">
+							<input type="text" placeholder="公司电话" class="input-xfat input-xlarge" id="input_company_tel" ng-model="entity.telephone">
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">公司详细地址：</label>
+						<label class="control-label" for="input_company_address">公司详细地址：</label>
 						<div class="controls">
-							<input type="text" placeholder="公司详细地址" class="input-xfat input-xlarge">
+							<input type="text" placeholder="公司详细地址" class="input-xfat input-xlarge" id="input_company_address" ng-model="entity.addressDetail" >
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">联系人姓名：</label>
+						<label class="control-label" for="input_name">联系人姓名：</label>
 						<div class="controls">
-							<input type="text" placeholder="联系人姓名" class="input-xfat input-xlarge">
+							<input type="text" placeholder="联系人姓名" class="input-xfat input-xlarge" id="input_name"  ng-model="entity.linkmanName">
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">联系人QQ：</label>
+						<label class="control-label" for="input_qq">联系人QQ：</label>
 						<div class="controls">
-							<input type="text" placeholder="联系人QQ" class="input-xfat input-xlarge">
+							<input type="text" placeholder="联系人QQ" class="input-xfat input-xlarge" id="input_qq"  ng-model="entity.linkmanQq">
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">联系人手机：</label>
+						<label class="control-label" for="input_phone">联系人手机：</label>
 						<div class="controls">
-							<input type="text" placeholder="联系人手机" class="input-xfat input-xlarge">
+							<input type="text" placeholder="联系人手机" class="input-xfat input-xlarge" id="input_phone"  ng-model="entity.mobile">
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">联系人EMAIL：</label>
+						<label class="control-label" for="input_email">联系人EMAIL：</label>
 						<div class="controls">
-							<input type="text" placeholder="联系人EMAIL" class="input-xfat input-xlarge">
+							<input type="text" placeholder="联系人EMAIL" class="input-xfat input-xlarge" id="input_email" ng-model="entity.linkmanEmail">
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">营业执照号：</label>
+						<label class="control-label" for="input_business_license">营业执照号：</label>
 						<div class="controls">
-							<input type="text" placeholder="营业执照号" class="input-xfat input-xlarge">
+							<input type="text" placeholder="营业执照号" class="input-xfat input-xlarge" id="input_business_license" ng-model="entity.licenseNumber">
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">税务登记证号：</label>
+						<label class="control-label" for="input_revenueNum">税务登记证号：</label>
 						<div class="controls">
-							<input type="text" placeholder="税务登记证号" class="input-xfat input-xlarge">
+							<input type="text" placeholder="税务登记证号" class="input-xfat input-xlarge" id="input_revenueNum" ng-model="entity.taxNumber">
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">组织机构代码证：</label>
+						<label class="control-label" for="input_groupCode">组织机构代码证：</label>
 						<div class="controls">
-							<input type="text" placeholder="组织机构代码证" class="input-xfat input-xlarge">
+							<input type="text" placeholder="组织机构代码证" class="input-xfat input-xlarge" id="input_groupCode" ng-model="entity.orgNumber">
 						</div>
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">法定代表人：</label>
+						<label class="control-label" for="input_2name">法定代表人：</label>
 						<div class="controls">
-							<input type="text" placeholder="法定代表人" class="input-xfat input-xlarge">
+							<input type="text" placeholder="法定代表人" class="input-xfat input-xlarge" id="input_2name" ng-model="entity.legalPerson">
 						</div>
 					</div>
 
 					<div class="control-group">
-						<label class="control-label">法定代表人身份证号：</label>
+						<label class="control-label" for="input_idNum">法定代表人身份证号：</label>
 						<div class="controls">
-							<input type="text" placeholder="法定代表人身份证号" class="input-xfat input-xlarge">
+							<input type="text" placeholder="法定代表人身份证号" class="input-xfat input-xlarge" id="input_idNum" ng-model="entity.legalPersonCardId">
 						</div>
 					</div>	
 
 					<div class="control-group">
-						<label class="control-label">开户行名称：</label>
+						<label class="control-label" for="input_bankName">开户行名称：</label>
 						<div class="controls">
-							<input type="text" placeholder="开户行名称" class="input-xfat input-xlarge">
+							<input type="text" placeholder="开户行名称" class="input-xfat input-xlarge" id="input_bankName" ng-model="entity.bankName">
 						</div>
 					</div>
 
 					<div class="control-group">
-						<label class="control-label">开户行支行：</label>
+						<label class="control-label" for="input_bank">开户行支行：</label>
 						<div class="controls">
-							<input type="text" placeholder="开户行支行" class="input-xfat input-xlarge">
+							<input type="text" placeholder="开户行支行" class="input-xfat input-xlarge" id="input_bank" >
 						</div>
 					</div>
 
 					<div class="control-group">
-						<label class="control-label">银行账号：</label>
-						<div class="controls">
-							<input type="text" placeholder="银行账号" class="input-xfat input-xlarge">
+						<label class="control-label" for="input_bankNum">银行账号：</label>
+						<div class="controls" >
+							<input type="text" placeholder="银行账号" class="input-xfat input-xlarge" id="input_bankNum" ng-model="entity.bankUser">
 						</div>
 					</div>					
 					
 					<div class="control-group">
-						<label for="inputPassword" class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						<label  class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<div class="controls">
-							<input name="m1" type="checkbox" value="2" checked=""><span>同意协议并注册  <a href="sampling.html">《品优购商家入驻协议》</a></span>
+							<input name="m1" type="checkbox" value="2" checked="" id="protocol_cb"><span>同意协议并注册  <a href="sampling.html">《品优购商家入驻协议》</a></span>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label"></label>
 						<div class="controls btn-reg">
-							<a class="sui-btn btn-block btn-xlarge btn-danger" href="home.html" target="_blank">申请入驻</a>
+							<a class="sui-btn btn-block btn-xlarge btn-danger" href="javascript:;" target="_blank" ng-click="save()" >申请入驻</a>
 						</div>
 					</div>
 				</form>

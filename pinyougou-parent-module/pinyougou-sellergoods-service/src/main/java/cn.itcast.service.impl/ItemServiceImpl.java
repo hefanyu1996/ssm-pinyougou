@@ -1,15 +1,16 @@
 package cn.itcast.service.impl;
-import cn.itcast.dao.TbItemMapper;
-import cn.itcast.pojo.TbItem;
-import cn.itcast.pojo.TbItemExample;
-import cn.itcast.service.ItemService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import entity.PageResult;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.itcast.dao.TbItemMapper;
+import cn.itcast.pojo.TbItem;
+import cn.itcast.pojo.TbItemExample;
+import cn.itcast.pojo.TbItemExample.Criteria;
+import cn.itcast.service.ItemService;
 
-import java.util.List;
+import entity.PageResult;
 
 /**
  * 服务实现层
@@ -83,7 +84,7 @@ public class ItemServiceImpl implements ItemService {
 		PageHelper.startPage(pageNum, pageSize);
 		
 		TbItemExample example=new TbItemExample();
-		TbItemExample.Criteria criteria = example.createCriteria();
+		Criteria criteria = example.createCriteria();
 		
 		if(item!=null){			
 						if(item.getTitle()!=null && item.getTitle().length()>0){

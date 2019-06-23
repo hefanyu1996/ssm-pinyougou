@@ -1,8 +1,9 @@
 package cn.itcast.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TbSeller {
+public class TbSeller implements Serializable {
     private String sellerId;
 
     private String name;

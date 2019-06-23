@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -18,7 +19,7 @@
     <bytecodeTargetLevel target="8">
       <module name="pinyougou-common" target="8" />
       <module name="pinyougou-dao" target="8" />
-      <module name="pinyougou-manager-web" target="1.8" />
+      <module name="pinyougou-manager-web" target="8" />
       <module name="pinyougou-parent-module" target="8" />
       <module name="pinyougou-pojo" target="8" />
       <module name="pinyougou-sellergoods-interface" target="8" />
