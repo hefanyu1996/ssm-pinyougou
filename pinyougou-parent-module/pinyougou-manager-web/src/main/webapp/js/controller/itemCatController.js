@@ -103,6 +103,21 @@ app.controller('itemCatController', function ($scope, $controller, itemCatServic
         })
     }
 
+
+/*
+
+    //根据parentId查询  + 分页                                ****
+    $scope.search = function (parentId) {
+        //记录父类型id
+        $scope.parentId = parentId;
+
+        itemCatService.findByParentId(parentId).success(function (data) {
+            $scope.list = data;
+        })
+    }
+*/
+
+
     //设置级别
     $scope.grade = 1;
     //修改层级等级

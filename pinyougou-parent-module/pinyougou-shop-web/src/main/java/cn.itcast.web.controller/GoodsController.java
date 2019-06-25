@@ -5,9 +5,11 @@ import cn.itcast.service.GoodsService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import entity.PageResult;
 import entity.Result;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pojogroup.Goods;
 
 import java.util.List;
 
@@ -48,8 +50,11 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbGoods goods){
+	public Result add(@RequestBody Goods goods){
 		try {
+			//获取当前商家id（用户名）
+			String name = SecurityContextHolder.getContext().getAuthentication().getName();
+			goods.getTbGoods().setSellerId(name);//设置商家id
 			goodsService.add(goods);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {

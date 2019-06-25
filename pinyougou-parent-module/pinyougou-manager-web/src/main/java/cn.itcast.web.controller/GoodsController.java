@@ -10,6 +10,8 @@ import cn.itcast.service.GoodsService;
 
 import entity.PageResult;
 import entity.Result;
+import pojogroup.Goods;
+
 /**
  * controller
  * @author Administrator
@@ -47,7 +49,7 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbGoods goods){
+	public Result add(@RequestBody Goods goods){
 		try {
 			goodsService.add(goods);
 			return new Result(true, "增加成功");
@@ -101,7 +103,7 @@ public class GoodsController {
 	
 		/**
 	 * 查询+分页
-	 * @param brand
+	 * @param goods
 	 * @param page
 	 * @param rows
 	 * @return

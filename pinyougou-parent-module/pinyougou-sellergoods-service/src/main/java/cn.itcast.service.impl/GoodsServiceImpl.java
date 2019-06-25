@@ -1,6 +1,8 @@
 package cn.itcast.service.impl;
+import cn.itcast.dao.TbGoodsDescMapper;
 import cn.itcast.dao.TbGoodsMapper;
 import cn.itcast.pojo.TbGoods;
+import cn.itcast.pojo.TbGoodsDesc;
 import cn.itcast.pojo.TbGoodsExample;
 import cn.itcast.service.GoodsService;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -8,6 +10,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import pojogroup.Goods;
 
 import java.util.List;
 
@@ -21,6 +24,9 @@ public class GoodsServiceImpl implements GoodsService {
 
 	@Autowired
 	private TbGoodsMapper goodsMapper;
+
+	@Autowired
+	private TbGoodsDescMapper goodsDescMapper;
 	
 	/**
 	 * 查询全部
@@ -44,8 +50,19 @@ public class GoodsServiceImpl implements GoodsService {
 	 * 增加
 	 */
 	@Override
-	public void add(TbGoods goods) {
-		goodsMapper.insert(goods);		
+	public void add(Goods goods) {
+		//插入商品基本信息
+		TbGoods tbGoods = goods.getTbGoods();
+		tbGoods.setAuditStatus("0");
+		goodsMapper.insert(tbGoods);
+
+		//获取插入的基本信息商品的id
+		TbGoodsDesc tbGoodsDesc = goods.getTbGoodsDesc();
+		//设置为商品扩展信息主键  1：1
+		tbGoodsDesc.setGoodsId(tbGoods.getId());
+		//插入商品扩展信息
+		goodsDescMapper.insert(tbGoodsDesc);
+
 	}
 
 	

@@ -31,6 +31,10 @@ app.service('itemCatService',function($http){
 		return $http.get('../itemCat/findByParentId.do?parentId='+parentId);
 	}
 
-
+	/*//根据parentId查询 + 分页
+        this.findByParentId = function (parentId) {
+            return $http.get('../itemCat/findByParentId.do?parentId='+parentId);
+        }
+*/
 
 });
