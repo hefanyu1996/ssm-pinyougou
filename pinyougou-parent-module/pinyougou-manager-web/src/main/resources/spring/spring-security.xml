@@ -58,6 +58,7 @@ http://www.springframework.org/schema/security/spring-security.xsd">
                                  default-target-url="/admin/index.html"
                                  authentication-failure-url="/login.html"
                                  authentication-success-forward-url="/admin/index.html"
+                                 always-use-default-target="true"
             />
             <!-- 登出， invalidate-session 是否删除session logout-url：登出处理链接 logout-successurl：登出成功页面
             注：登出操作 只需要链接到 logout即可登出当前用户 -->

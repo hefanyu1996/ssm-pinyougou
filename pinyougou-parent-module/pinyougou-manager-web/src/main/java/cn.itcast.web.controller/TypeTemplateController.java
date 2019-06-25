@@ -1,5 +1,6 @@
 package cn.itcast.web.controller;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -110,5 +111,14 @@ public class TypeTemplateController {
 	public PageResult search(@RequestBody TbTypeTemplate typeTemplate, int page, int rows  ){
 		return typeTemplateService.findPage(typeTemplate, page, rows);		
 	}
-	
+
+	/**
+	 * 插叙下拉列表
+	 * @return
+	 */
+	@RequestMapping("/findTypeOptions.do")
+	public List<Map<Long,String>> findTypeOptions(){
+		return typeTemplateService.findTypeOptions();
+	}
+
 }

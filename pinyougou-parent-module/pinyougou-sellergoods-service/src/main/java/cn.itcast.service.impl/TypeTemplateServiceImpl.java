@@ -1,6 +1,7 @@
 package cn.itcast.service.impl;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,5 +110,10 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 
-	
+	@Override
+	public List<Map<Long,String>> findTypeOptions() {
+		return typeTemplateMapper.findTypeOptions();
+	}
+
+
 }

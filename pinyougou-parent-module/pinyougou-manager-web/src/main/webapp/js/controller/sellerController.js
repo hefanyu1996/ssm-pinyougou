@@ -32,19 +32,34 @@ app.controller('sellerController', function ($scope, $controller, sellerService)
     }
 
     //保存
-    $scope.save = function () {
-        var serviceObject;//服务层对象
-        if ($scope.entity.id != null) {//如果有ID
-            serviceObject = sellerService.update($scope.entity); //修改
-        } else {
-            serviceObject = sellerService.add($scope.entity);//增加
+    $scope.add=function(){
+
+        var protocolCb = document.getElementById('protocol_cb');
+        if(protocolCb.checked){
+            sellerService.add($scope.entity).success(
+                function(response){
+                    if(response.success){
+                        //跳转登录页
+                        location.href='shoplogin.html';
+                    }else{
+                        alert(response.message);
+                    }
+                }
+            );
+        }else{
+            alert("同意协议才能注册")
         }
-        serviceObject.success(
-            function (response) {
-                if (response.success) {
-                    //重新查询
-                    $scope.reloadList();//重新加载
-                } else {
+
+    }
+
+    //修改
+    $scope.update=function(){
+        sellerService.update($scope.entity).success(
+            function(response){
+                if(response.success){
+                    //跳转登录页
+                    location.href='shoplogin.html';
+                }else{
                     alert(response.message);
                 }
             }
@@ -72,11 +87,10 @@ app.controller('sellerController', function ($scope, $controller, sellerService)
         sellerService.search(page, rows, $scope.searchEntity).success(
             function (response) {
                 $scope.list = response.rows;
-                $scope.paginationConf.totalItems = response.total;//更新总记录数
+                $scope.paginationConf.totalItems = response.total;//更新总记录
             }
         );
-    };
-
+    }
 
     //商家审核
     $scope.updateStatus = function (sellerId, status) {

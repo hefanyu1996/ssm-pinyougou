@@ -15,11 +15,21 @@
     <link rel="stylesheet" href="../css/style.css">
     
     <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <script src="../plugins/jQueryUI/jquery-ui.min.js"></script>
+    <!--<script src="../plugins/jQueryUI/jquery-ui.min.js"></script>-->
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
   
     <script src="../plugins/adminLTE/js/app.min.js"></script>
-    
+
+
+    <!--引入angularJS-->
+    <script src="/plugins/angularjs/angular.min.js"></script>
+
+    <!--引入外部模块js-->
+    <script src="../js/base.js"></script>
+    <script src="../js/service/sellerService.js"></script>
+    <script src="../js/controller/baseController.js"></script>
+    <script src="../js/controller/sellerController.js"></script>
+    <!--引入外部模块js-->
 
     
     <script type="text/javascript">
@@ -35,7 +45,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" ng-app="pinyougou" ng-controller="sellerController">
 
     <div class="wrapper">
 
@@ -277,7 +287,7 @@
                                         <a href="#" class="btn btn-default btn-flat">修改密码</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">注销</a>
+                                        <a href="#" class="btn btn-default btn-flat" ng-click="logout()">注销</a>
                                     </div>
                                 </li>
                             </ul>

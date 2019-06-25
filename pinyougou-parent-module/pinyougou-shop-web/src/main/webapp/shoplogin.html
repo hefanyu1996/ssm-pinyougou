@@ -60,19 +60,19 @@
 							<img src="img/wx_cz.jpg" />
 						</div>
 						<div id="profile" class="tab-pane  active">
-							<form class="sui-form">
+							<form class="sui-form" method="post" action="/login.do" id="login_form">
 								<div class="input-prepend"><span class="add-on loginname"></span>
-									<input type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat">
+									<input type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat" name="username">
 								</div>
 								<div class="input-prepend"><span class="add-on loginpwd"></span>
-									<input type="password" placeholder="请输入密码" class="span2 input-xfat">
+									<input type="password" placeholder="请输入密码" class="span2 input-xfat" name="password">
 								</div>
 								<div class="setting">
 									<label class="checkbox inline"><input name="m1" type="checkbox" value="2" checked="">自动登录</label>
 									<span class="forget">忘记密码？</span>
 								</div>
 								<div class="logined">
-									<a class="sui-btn btn-block btn-xlarge btn-danger" href="admin/index.html" target="_blank" >登&nbsp;&nbsp;录</a>
+									<a class="sui-btn btn-block btn-xlarge btn-danger" href="javascript:document:login_form.submit()" >登&nbsp;&nbsp;录</a>
 								</div>
 							</form>
 							<div class="otherlogin">
@@ -84,7 +84,7 @@
 										<li><img src="img/weixin.png" /></li>
 									</ul>
 								</div>
-								<span class="register"><a href="register.html" target="_blank">立即注册</a></span>
+								<span class="register"><a href="../register.html">立即注册</a></span>
 							</div>
 						</div>
 					</div>

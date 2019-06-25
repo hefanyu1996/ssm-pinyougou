@@ -1,5 +1,7 @@
 package cn.itcast.service;
 import java.util.List;
+import java.util.Map;
+
 import cn.itcast.pojo.TbTypeTemplate;
 
 import entity.PageResult;
@@ -57,5 +59,11 @@ public interface TypeTemplateService {
 	 * @return
 	 */
 	public PageResult findPage(TbTypeTemplate typeTemplate, int pageNum,int pageSize);
-	
+
+	/**
+	 * 查询下拉列表
+	 * @return
+	 */
+    List<Map<Long,String>> findTypeOptions();
+
 }

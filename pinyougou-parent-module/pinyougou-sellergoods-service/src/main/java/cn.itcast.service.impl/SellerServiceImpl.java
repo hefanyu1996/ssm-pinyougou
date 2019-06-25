@@ -25,7 +25,7 @@ public class SellerServiceImpl implements SellerService {
 
 	@Autowired
 	private TbSellerMapper sellerMapper;
-	
+
 	/**
 	 * 查询全部
 	 */

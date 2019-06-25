@@ -48,7 +48,7 @@ public interface ItemCatService {
 	 * 批量删除
 	 * @param ids
 	 */
-	public void delete(Long [] ids);
+	public void delete(Long [] ids) throws Exception;
 
 	/**
 	 * 分页
@@ -57,5 +57,11 @@ public interface ItemCatService {
 	 * @return
 	 */
 	public PageResult findPage(TbItemCat itemCat, int pageNum,int pageSize);
-	
+
+	/**
+	 * parentId 条件分页
+	 * @param parentId
+	 * @return
+	 */
+	List<TbItemCat> findByParentId(Long parentId);
 }

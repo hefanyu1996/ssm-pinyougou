@@ -4,6 +4,10 @@ import cn.itcast.service.SellerService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import entity.PageResult;
 import entity.Result;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +25,11 @@ public class SellerController {
 
 	@Reference
 	private SellerService sellerService;
-	
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+
 	/**
 	 * 返回全部列表
 	 * @return
@@ -49,6 +57,11 @@ public class SellerController {
 	@RequestMapping("/add")
 	public Result add(@RequestBody TbSeller seller){
 		try {
+			//取出密码 加密
+			String password = passwordEncoder.encode(seller.getPassword());
+			//设置 加密密码
+			seller.setPassword(password);
+			//存入
 			sellerService.add(seller);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
@@ -110,5 +123,6 @@ public class SellerController {
 	public PageResult search(@RequestBody TbSeller seller, int page, int rows  ){
 		return sellerService.findPage(seller, page, rows);		
 	}
+
 	
 }
