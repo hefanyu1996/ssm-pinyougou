@@ -29,7 +29,7 @@
 	<!-- 引入select2  js -->
 	<script src="../js/service/goodsService.js"></script>
 	<script src="../js/service/uploadService.js">  </script>
-	<script src="../js/service/brandService.js">  </script>
+	<script src="../js/service/typeTemplateService.js">  </script>
 	<script src="../js/service/itemCatService.js">  </script>
 	<script src="../js/controller/baseController.js"></script>
 	<script src="../js/controller/goodsController.js"></script>
@@ -52,7 +52,6 @@
             <section class="content">
 
                 <div class="box-body">
-					{{entity}}
                     <!--tab页-->
                     <div class="nav-tabs-custom">
 
@@ -65,7 +64,7 @@
                                 <a href="#pic_upload" data-toggle="tab">商品图片</a>                                                        
                             </li>    
                             <li >
-                                <a href="#customAttribute" data-toggle="tab">扩展属性</a>                                                        
+                                <a href="#customAttribute" data-toggle="tab">扩展属性</a>
                             </li>     
                             <li >
                                 <a href="#spec" data-toggle="tab" >规格</a>                                                        
@@ -109,15 +108,16 @@
 		                               <input type="text" class="form-control"    placeholder="商品名称" value=""
 									   ng-model="entity.tbGoods.goodsName">
 		                           </div>
-		                           
+
 		                           <div class="col-md-2 title">品牌</div>
 		                           <div class="col-md-10 data">
-									   <input select2 config="selectBrandOptions" ng-model="entity.tbGoods.brandId" placeholder="请选择品牌" class="form-control" type="text"/>
+									   <select  class="form-control" ng-model="entity.tbGoods.brandId"  ng-options="brand.id as brand.text for brand in typeTemplate.brandIds" >
+									   </select>
 		                           </div>
 		
 								   <div class="col-md-2 title">副标题</div>
 		                           <div class="col-md-10 data">
-		                               <input type="text" class="form-control"   placeholder="副标题" value=""
+		                               <input type="text" class="form-control"  placeholder="副标题" value=""
 									   ng-model="entity.tbGoods.caption">
 		                           </div>
 		                           
@@ -188,23 +188,25 @@
                            
                             <!--扩展属性-->
                             <div class="tab-pane" id="customAttribute">
-                                <div class="row data-type">                                
-	                                <div>
-		                                <div class="col-md-2 title">扩展属性1</div>
-				                        <div class="col-md-10 data">
-				                              <input class="form-control" placeholder="扩展属性1">	            	 
-				                        </div>
-	                                </div>       
-									<div>
+                                <div class="row data-type">
+									<div ng-repeat="entity in entity.tbGoodsDesc.customAttributeItems">
+										<div class="col-md-2 title">{{entity.text}}</div>
+										<div class="col-md-10 data">
+											<input class="form-control" placeholder="请输入{{entity.text}}" ng-model="entity.value">
+										</div>
+									</div>
+
+
+									<!--<div>
 		                                <div class="col-md-2 title">扩展属性2</div>
 				                        <div class="col-md-10 data">
 				                              <input class="form-control" placeholder="扩展属性2">	            	 
 				                        </div>
-	                                </div>  									
+	                                </div> -->
                                 </div>
                             </div>
                       
-                            <!--规格-->
+                            <!--规格-->{{entity}}
                             <div class="tab-pane" id="spec">
                             	<div class="row data-type">
 	                            	<div class="col-md-2 title">是否启用规格</div>
@@ -215,26 +217,19 @@
                             	<p>
                             	
                             	<div>
-                            	
 	                                <div class="row data-type">
 	                                
-		                                <div>
-			                                <div class="col-md-2 title">屏幕尺寸</div>
+		                                <div ng-repeat="spec in specList">
+			                                <div class="col-md-2 title">{{spec.text}}</div>
 					                        <div class="col-md-10 data">
 					                               
-					                            <span>
-					                            	<input  type="checkbox" >4.0					                            				                            	
-					                            </span>  	
-												<span>
-					                            	<input  type="checkbox" >4.5					                            				                            	
+					                            <span ng-repeat="option in spec.options">
+					                            	<input type="checkbox" ng-click="updateSpecAttribute($event,spec.text,option.optionName)" >{{option.optionName}}
 					                            </span>
-												<span>
-					                            	<input  type="checkbox" >5.0					                            				                            	
-					                            </span>												
 					                            	
 					                        </div>
 		                                </div>   
-										<div>
+										<!--<div>
 			                                <div class="col-md-2 title">网络制式</div>
 					                        <div class="col-md-10 data">
 					                               
@@ -249,7 +244,7 @@
 					                            </span>												
 					                            	
 					                        </div>
-		                                </div>  
+		                                </div> -->
 		                                                                                  
 	                                </div>
 	

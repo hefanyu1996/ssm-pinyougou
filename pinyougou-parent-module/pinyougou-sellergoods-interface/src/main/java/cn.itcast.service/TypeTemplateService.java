@@ -66,4 +66,10 @@ public interface TypeTemplateService {
 	 */
     List<Map<Long,String>> findTypeOptions();
 
+	/**
+	 * 查询规格选项列表
+	 * @return
+	 * @param id
+	 */
+	List<Map> findSpecList(Long id);
 }

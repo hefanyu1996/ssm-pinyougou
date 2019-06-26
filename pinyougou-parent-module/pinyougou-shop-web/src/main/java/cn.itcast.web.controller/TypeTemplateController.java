@@ -1,16 +1,17 @@
 package cn.itcast.web.controller;
-import java.util.List;
-import java.util.Map;
 
+import cn.itcast.pojo.TbTypeTemplate;
+import cn.itcast.service.TypeTemplateService;
+import com.alibaba.dubbo.config.annotation.Reference;
+import entity.PageResult;
+import entity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.alibaba.dubbo.config.annotation.Reference;
-import cn.itcast.pojo.TbTypeTemplate;
-import cn.itcast.service.TypeTemplateService;
 
-import entity.PageResult;
-import entity.Result;
+import java.util.List;
+import java.util.Map;
+
 /**
  * controller
  * @author Administrator
@@ -119,6 +120,16 @@ public class TypeTemplateController {
 	@RequestMapping("/findTypeOptions.do")
 	public List<Map<Long,String>> findTypeOptions(){
 		return typeTemplateService.findTypeOptions();
+	}
+
+
+	/**
+	 * 查询规格选项列表
+	 * @return
+	 */
+	@RequestMapping("/findSpecList.do")
+	public List<Map> findSpecList(Long id){
+		return typeTemplateService.	findSpecList(id);
 	}
 
 }

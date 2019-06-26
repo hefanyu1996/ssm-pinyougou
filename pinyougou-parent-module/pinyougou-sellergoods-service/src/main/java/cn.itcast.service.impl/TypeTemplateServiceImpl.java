@@ -3,6 +3,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import cn.itcast.dao.TbSpecificationMapper;
+import cn.itcast.dao.TbSpecificationOptionMapper;
+import cn.itcast.pojo.TbSpecificationOption;
+import cn.itcast.pojo.TbSpecificationOptionExample;
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -113,6 +118,30 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 	@Override
 	public List<Map<Long,String>> findTypeOptions() {
 		return typeTemplateMapper.findTypeOptions();
+	}
+
+
+	/**
+	 * 查询规格选项列表
+	 * @return
+	 */
+	@Autowired
+	private TbSpecificationOptionMapper tbSpecificationOptionMapper;
+
+	@Override
+	public List<Map> findSpecList(Long id) {
+		TbTypeTemplate tbTypeTemplate = typeTemplateMapper.selectByPrimaryKey(id);
+		List<Map> maps = JSON.parseArray(tbTypeTemplate.getSpecIds(), Map.class);
+
+		for (Map map : maps) {
+			TbSpecificationOptionExample tbSpecificationOptionExample = new TbSpecificationOptionExample();
+			TbSpecificationOptionExample.Criteria criteria = tbSpecificationOptionExample.createCriteria();
+			criteria.andSpecIdEqualTo(new Long((Integer) map.get("id")));
+			List<TbSpecificationOption> tbSpecificationOptions = tbSpecificationOptionMapper.selectByExample(tbSpecificationOptionExample);
+			map.put("options",tbSpecificationOptions);
+		}
+
+		return maps;
 	}
 
 
