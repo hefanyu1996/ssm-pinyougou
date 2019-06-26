@@ -3,6 +3,8 @@ package cn.itcast.dao;
 import cn.itcast.pojo.TbItemCat;
 import cn.itcast.pojo.TbItemCatExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TbItemCatMapper {
@@ -27,4 +29,6 @@ public interface TbItemCatMapper {
     int updateByPrimaryKeySelective(TbItemCat record);
 
     int updateByPrimaryKey(TbItemCat record);
+
+     List<Map<Long, String>> findItemCatOptions(Long ParentId);
 }

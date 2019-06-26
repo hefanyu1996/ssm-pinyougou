@@ -193,4 +193,8 @@
       type_id = #{typeId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="findItemCatOptions" resultType="java.util.Map" parameterType="long">
+    select id,name text from tb_item_cat where parent_id = #{parentId}
+  </select>
 </mapper>
