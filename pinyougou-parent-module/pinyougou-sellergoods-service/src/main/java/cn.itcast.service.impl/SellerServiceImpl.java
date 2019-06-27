@@ -181,4 +181,18 @@ public class SellerServiceImpl implements SellerService {
 
 	}
 
+	/**
+	 * 修改密码
+	 * @param sellerId
+	 * @param newPassword
+	 */
+	@Override
+	public void changePassword(String sellerId, String newPassword) {
+		//查询出要修改的商家用户对象
+		TbSeller tbSeller = sellerMapper.selectByPrimaryKey(sellerId);
+		tbSeller.setPassword(newPassword);
+		//根据商家用户对象id 更新密码
+		sellerMapper.updateByPrimaryKey(tbSeller);
+	}
+
 }

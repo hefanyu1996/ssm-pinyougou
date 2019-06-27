@@ -1,5 +1,5 @@
 //控制层
-app.controller('sellerController', function ($scope, $controller, sellerService) {
+app.controller('sellerController', function ($scope,$location, $controller, sellerService) {
 
     $controller('baseController', {$scope: $scope});//继承
 
@@ -109,5 +109,15 @@ app.controller('sellerController', function ($scope, $controller, sellerService)
         }
 
     }
+
+    $scope.changePassword = function () {
+        sellerService.changePassword($scope.oldPassword,$scope.newPassword).success(function (data) {
+            alert(data.message);
+            if(data.success){
+                location.href = "../logout.do";
+            }
+        })
+    }
+
 
 });

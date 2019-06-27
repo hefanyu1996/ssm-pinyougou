@@ -25,6 +25,9 @@ app.service('sellerService',function($http){
     this.dele=function(ids){
         return $http.get('../seller/delete.do?ids='+ids);
     }
-
+    //修改密码
+    this.changePassword = function (oldPassword,newPassword) {
+        return $http.post('../seller/changePassword.do?oldPassword='+oldPassword+'&newPassword='+newPassword);
+    }
 
 });

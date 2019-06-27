@@ -64,4 +64,11 @@ public interface SellerService {
 	 * @param status
 	 */
     void updateStatus(String sellerId, String status);
+
+	/**
+	 * 修改密码
+	 * @param sellerId
+	 * @param newPassword
+	 */
+	void changePassword(String sellerId, String newPassword);
 }

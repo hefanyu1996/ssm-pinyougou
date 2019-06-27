@@ -109,6 +109,12 @@ app.controller('goodsController', function ($scope, $controller, goodsService,up
                 $scope.entity.tbGoodsDesc.customAttributeItems = JSON.parse($scope.typeTemplate.customAttributeItems);
 
             })
+
+
+            //查询规格列表
+            typeTemplateService.findSpecList(newValue).success(function (data) {
+                $scope.specList = data;
+            });
         }
 
     })
@@ -124,6 +130,10 @@ app.controller('goodsController', function ($scope, $controller, goodsService,up
     //查询二级分类列表
     $scope.$watch('entity.tbGoods.category1Id',function (newValue, oldValue) {
         if(newValue!=undefined){
+            $scope.typeTemplate = null;
+            $scope.entity.tbGoodsDesc.customAttributeItems = null;
+            $scope.specList = null;
+
             itemCatService.findByParentId(newValue).success(function (data) {
                 $scope.itemCat2List = data;
                 $scope.itemCat3List = null;
@@ -135,6 +145,11 @@ app.controller('goodsController', function ($scope, $controller, goodsService,up
     //查询三级分类列表
     $scope.$watch('entity.tbGoods.category2Id',function (newValue, oldValue) {
         if(newValue!=undefined) {
+            //置空品牌列表
+            $scope.typeTemplate = null;
+            $scope.entity.tbGoodsDesc.customAttributeItems = null;
+            $scope.specList = null;
+
             itemCatService.findByParentId(newValue).success(function (data) {
                 $scope.itemCat3List = data;
             })
@@ -145,7 +160,7 @@ app.controller('goodsController', function ($scope, $controller, goodsService,up
     $scope.$watch('entity.tbGoods.category1Id',function (newValue, oldValue) {
         if(newValue!=undefined){
             itemCatService.findOne(newValue).success(function (data) {
-                $scope.entity.tbGoods.typeTemplateId = data.typeId;
+                $scope.entity.tbGoods.typeTemplateId = null;
             })
         }
 
@@ -155,7 +170,7 @@ app.controller('goodsController', function ($scope, $controller, goodsService,up
     $scope.$watch('entity.tbGoods.category2Id',function (newValue, oldValue) {
         if(newValue!=undefined){
             itemCatService.findOne(newValue).success(function (data) {
-                $scope.entity.tbGoods.typeTemplateId = data.typeId;
+                $scope.entity.tbGoods.typeTemplateId = null;
             })
         }
 
@@ -171,18 +186,11 @@ app.controller('goodsController', function ($scope, $controller, goodsService,up
 
     })
 
-    //查询规格列表
-    $scope.$watch('entity.tbGoods.typeTemplateId',function (newValue, oldValue) {
-        if(newValue !=undefined){
-            typeTemplateService.findSpecList(newValue).success(function (data) {
-                $scope.specList = data;
-            });
-        }
-    })
 
 
     //插入选中规格信息
     $scope.updateSpecAttribute = function ($event,name, value) {
+
         var object = $scope.searchObjectByKey($scope.entity.tbGoodsDesc.specificationItems,"attributeName",name);
 
         if(object !=null){
@@ -198,9 +206,53 @@ app.controller('goodsController', function ($scope, $controller, goodsService,up
                 }
             }
         }else{
-            $scope.entity.tbGoodsDesc.specificationItems = [{attributeName:name,attributeValue:[value]}]
+            $scope.entity.tbGoodsDesc.specificationItems.push({"attributeName":name,"attributeValue":[value]});
         }
     }
 
+    /*
+    $scope.entity = {
+        tbGoods: {},
+        tbGoodsDesc: {itemImages: [], specificationItems: [], customAttributeItems: []},
+        tbItemList: []
+    };
+     */
+    //创建SKU列表
+    $scope.createItemList = function () {
+        //初始化
+        $scope.entity.tbItemList = [{spec:{},price:0,num:99999,status:'0',isDefault:'0'}];
 
-});	
+        var items = $scope.entity.tbGoodsDesc.specificationItems;
+
+        for (var i =0 ;i<items.length; i++){
+
+            $scope.entity.tbItemList = addColumn($scope.entity.tbItemList,items[i].attributeName,items[i].attributeValue);
+
+        }
+
+    }
+
+    //添加SKU列值
+    addColumn = function (list, name, values) {
+
+        var newList=[];//新的集合
+
+        for (var i = 0 ; i<list.length ; i++){
+
+            var oldRow = list[i];
+
+            for (var j = 0; j < values.length; j++) {
+
+                var newRow = JSON.parse(JSON.stringify(oldRow));
+                newRow.spec[name] = values[j];
+                newList.push(newRow);
+            }
+
+        }
+
+        return newList;
+    }
+
+
+
+});

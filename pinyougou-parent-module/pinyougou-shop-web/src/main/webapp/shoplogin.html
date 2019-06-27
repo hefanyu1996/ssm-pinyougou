@@ -28,6 +28,13 @@
 	<script src="js/controller/sellerController.js"></script>
 	 <!--引入外部模块js-->
 
+	<script>
+		window.onload=function(){
+			if(self!=top){
+				top.location.href="login";
+			}
+		}
+	</script>
 
 </head>
 
