@@ -29,4 +29,10 @@ public class ItemCatController {
 		return itemCatService.findOne(id);
 	}
 
+
+	@RequestMapping("/findAll.do")
+	public List<TbItemCat> findAll(){
+		return itemCatService.findAll();
+	}
+
 }

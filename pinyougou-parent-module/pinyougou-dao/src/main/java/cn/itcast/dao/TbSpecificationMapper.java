@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import sun.rmi.runtime.Log;
 
 public interface TbSpecificationMapper {
     int countByExample(TbSpecificationExample example);

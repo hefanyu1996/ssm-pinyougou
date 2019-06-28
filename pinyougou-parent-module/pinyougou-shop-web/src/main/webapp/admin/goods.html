@@ -14,10 +14,28 @@
     <link rel="stylesheet" href="../css/style.css">
 	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- 引入angularJS依赖 -->
+	<script src="../plugins/angularjs/angular.min.js"></script>
+
+	<!-- angular JS分页组件 -->
+	<script src="../plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+	<!-- angular JS分页组件 -->
+
+	<!-- 引用外部js模块 -->
+	<script src="../js/base_pagination.js"></script>
+	<script src="../js/service/goodsService.js"></script>
+	<script src="../js/service/uploadService.js"></script>
+	<script src="../js/service/itemCatService.js"></script>
+	<script src="../js/service/typeTemplateService.js"></script>
+	<script src="../js/controller/baseController.js"></script>
+	<script src="../js/controller/goodsController.js"></script>
+	<!-- 引用外部js模块 -->
  
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" >
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="findItemCatList()">
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
@@ -43,15 +61,15 @@
                             </div>
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
-                                  状态：<select>
+                                  状态：<select ng-model="searchEntity.auditStatus">
                                          	<option value="">全部</option>      
-                                         	<option value="0">未申请</option>    
-                                         	<option value="1">申请中</option>    
-                                         	<option value="2">审核通过</option>    
-                                         	<option value="3">已驳回</option>                                     
+                                         	<option value="0">未审核</option>
+                                         	<option value="1">审核通过</option>
+                                         	<option value="2">审核未通过</option>
+                                         	<option value="3">已关闭</option>
                                         </select>
-							                  商品名称：<input >									
-									<button class="btn btn-default" >查询</button>                                    
+							                  商品名称：<input ng-model="searchEntity.goodsName" >
+									<button class="btn btn-default" ng-click="reloadList()">查询</button>
                                 </div>
                             </div>
                             <!--工具栏/-->
@@ -61,7 +79,8 @@
 			                      <thead>
 			                          <tr>
 			                              <th class="" style="padding-right:0px">
-			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue">
+			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue"
+													 ng-checked="isAllSelect" ng-click="selectAll($event)" id="selectAll">
 			                              </th> 
 										  <th class="sorting_asc">商品ID</th>
 									      <th class="sorting">商品名称</th>
@@ -74,30 +93,31 @@
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-			                          <tr>
-			                              <td><input  type="checkbox"></td>			                              
-				                          <td>1</td>
-									      <td>小米6S手机</td>
-									      <td>1090</td>
-									      <td>数码</td>
-									      <td>手机</td>
-									      <td>国产手机</td>
+			                          <tr ng-repeat="entity in list">
+			                              <td><input  type="checkbox" ng-checked="isSelect" ng-click="updateSelection()"></td>
+				                          <td>{{entity.id}}</td>
+									      <td>{{entity.goodsName}}</td>
+									      <td>{{entity.price}}</td>
+									      <td>{{itemCatList[entity.category1Id]}}</td>
+									      <td>{{itemCatList[entity.category2Id]}}</td>
+									      <td>{{itemCatList[entity.category3Id]}}</td>
 		                                  <td>
-		                                  	<span>
+											  {{statusName[entity.auditStatus]}}
+		                                  	<!--<span ng-model="" ng-if="entity.auditStatus == 0" >
 		                                  		未申请
 		                                  	</span>
-		                                  	<span >
+		                                  	<span  ng-model="" ng-if="entity.auditStatus == 1" >
 		                                  		申请中
 		                                  	</span>
-		                                  	<span>
+		                                  	<span  ng-model="" ng-if="entity.auditStatus == 2" >
 		                                  		审核通过
 		                                  	</span>
-		                                  	<span>
+		                                  	<span  ng-model="" ng-if="entity.auditStatus == 3" >
 		                                  		已驳回
-		                                  	</span>
+		                                  	</span>-->
 		                                  </td>		                                  
 		                                  <td class="text-center">                                          
-		                                 	  <button type="button" class="btn bg-olive btn-xs">修改</button>                  
+		                                 	  <button type="button" class="btn bg-olive btn-xs" ng-click="jumpUpdate(entity.id)">修改</button>
 		                                  </td>
 			                          </tr>
 			                      </tbody>
@@ -107,10 +127,11 @@
 							 
                         </div>
                         <!-- 数据表格 /-->
-                        
-                        
+
+						<tm-pagination conf="paginationConf"></tm-pagination>
                      </div>
                     <!-- /.box-body -->
+
 		
 </body>
 

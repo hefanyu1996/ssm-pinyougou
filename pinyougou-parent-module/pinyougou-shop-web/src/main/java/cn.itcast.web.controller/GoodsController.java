@@ -69,8 +69,15 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/update")
-	public Result update(@RequestBody TbGoods goods){
+	public Result update(@RequestBody Goods goods){
 		try {
+			//校验商家账号
+			Goods goods1 = goodsService.findOne(goods.getTbGoods().getId());
+
+			String currSelleId = SecurityContextHolder.getContext().getAuthentication().getName();
+			if(!goods.getTbGoods().getSellerId().equals(currSelleId) || !goods1.getTbGoods().getSellerId().equals(currSelleId)){
+				return new Result(false, "非法操作");
+			}
 			goodsService.update(goods);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
@@ -85,8 +92,8 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/findOne")
-	public TbGoods findOne(Long id){
-		return goodsService.findOne(id);		
+	public Goods findOne(Long id){
+		return goodsService.findOne(id);
 	}
 	
 	/**
@@ -114,6 +121,7 @@ public class GoodsController {
 	 */
 	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbGoods goods, int page, int rows  ){
+		goods.setSellerId(SecurityContextHolder.getContext().getAuthentication().getName());
 		return goodsService.findPage(goods, page, rows);		
 	}
 	

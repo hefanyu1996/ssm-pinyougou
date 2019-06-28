@@ -19,6 +19,7 @@ app.controller('baseController', function ($scope) {
         );
         //每次删除操作后清空id数组
         $scope.selectIds = [];
+
     };
 
 
@@ -51,6 +52,7 @@ app.controller('baseController', function ($scope) {
         }
     };
 
+
     $scope.json2String = function (jsonString, key) {
         var value = "";
         if (jsonString != null) {
@@ -76,5 +78,7 @@ app.controller('baseController', function ($scope) {
         }
         return null;
     }
+
+
 
 });

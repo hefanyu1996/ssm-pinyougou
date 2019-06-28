@@ -39,7 +39,7 @@
 </head>
 
 <body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController"
-      ng-init="findBrandOptions();selectItemCat1List()">
+      ng-init="findBrandOptions();selectItemCat1List();findOne()">
 
 <!-- 正文区域 -->
 <section class="content">
@@ -64,7 +64,7 @@
                 </li>
             </ul>
             <!--tab头/-->
-
+            {{entity}}
             <!--tab内容-->
             <div class="tab-content">
 
@@ -130,7 +130,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2 title editer">商品介绍</div>
+                        <div class="col-md-2 title editer">商品介绍{{entity.tbGoods.id}}</div>
                         <div class="col-md-10 data editer">
                             <textarea name="content" style="width:800px;height:400px;visibility:hidden;"></textarea>
                         </div>
@@ -217,10 +217,10 @@
                     <div class="row data-type">
                         <div class="col-md-2 title">是否启用规格</div>
                         <div class="col-md-10 data">
-                            <input type="checkbox" ng-model="entity.goods.isEnableSpec" ng-true-value="1" ng-false-value="0">
+                            <input type="checkbox" ng-model="entity.tbGoods.isEnableSpec" ng-true-value="1" ng-false-value="0" ng-click="clearSpecList($event)" >
                         </div>
                     </div>
-                        <div ng-if="entity.goods.isEnableSpec == 1">
+                        <div ng-if="entity.tbGoods.isEnableSpec == 1">
                             	<div>
 	                                <div class="row data-type">
 	                                
@@ -229,8 +229,9 @@
 					                        <div class="col-md-10 data">
 					                               
 					                            <span ng-repeat="option in spec.options">
-					                            	<input type="checkbox"
-                                                           ng-click="updateSpecAttribute($event,spec.text,option.optionName);createItemList()">{{option.optionName}}
+					                            	<input  type="checkbox"
+                                                           ng-click="updateSpecAttribute($event,spec.text,option.optionName);createItemList()"
+                                                            ng-checked="checkEcho(spec.text,option.optionName)">{{option.optionName}}
 					                            </span>
 					                            	
 					                        </div>
