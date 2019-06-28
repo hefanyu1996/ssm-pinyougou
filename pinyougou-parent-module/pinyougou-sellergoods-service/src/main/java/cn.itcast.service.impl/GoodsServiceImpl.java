@@ -5,11 +5,11 @@ import cn.itcast.pojo.*;
 import cn.itcast.service.GoodsService;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import pojogroup.Goods;
 
 import java.util.Date;
@@ -22,6 +22,7 @@ import java.util.Map;
  * @author Administrator
  */
 @Service
+@Transactional
 public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
@@ -179,7 +180,7 @@ public class GoodsServiceImpl implements GoodsService {
         itemMapper.deleteByExample(tbItemExample);
         //2.循环插入新的SKU
         for (TbItem tbItem : goods.getTbItemList()) {
-            setItemValues(goods,tbItem);
+            insertItemList(goods);
             itemMapper.insert(tbItem);
         }
 
