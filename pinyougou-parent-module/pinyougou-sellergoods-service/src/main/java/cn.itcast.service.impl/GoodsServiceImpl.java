@@ -178,11 +178,8 @@ public class GoodsServiceImpl implements GoodsService {
         TbItemExample.Criteria criteria = tbItemExample.createCriteria();
         criteria.andGoodsIdEqualTo(goods.getTbGoods().getId());
         itemMapper.deleteByExample(tbItemExample);
-        //2.循环插入新的SKU
-        for (TbItem tbItem : goods.getTbItemList()) {
-            insertItemList(goods);
-            itemMapper.insert(tbItem);
-        }
+        //2.插入新的SKU
+        insertItemList(goods);
 
     }
 
