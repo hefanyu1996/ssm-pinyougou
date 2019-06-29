@@ -72,6 +72,7 @@ public class GoodsServiceImpl implements GoodsService {
         tbGoods.setAuditStatus("0");
         goodsMapper.insert(tbGoods);
 
+
         //获取插入的基本信息商品的id
         TbGoodsDesc tbGoodsDesc = goods.getTbGoodsDesc();
         //设置为商品扩展信息主键  1：1

@@ -5,7 +5,7 @@ app.service('uploadService',function ($http) {
 
         var formData = new FormData();
 
-        formData.append("file",document.getElementsByTagName("file").files[0]);
+        formData.append("file",file.files[0]);
 
         return $http({
            method:'POST',
