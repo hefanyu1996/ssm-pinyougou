@@ -48,10 +48,10 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     }
 
 
-    //跳转修改页面
+    /*//跳转修改页面
     $scope.jumpUpdate = function(id){
         location.href = "../admin/goods_edit.html#?id="+ id;
-    }
+    }*/
 
     //save数据
     $scope.save = function(){
@@ -73,8 +73,8 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
                 if (response.success) {
                     //重新查询
                     alert(response.message);
-                    $scope.entity={};//tbGoods:{},tbGoodsDesc:{itemImages:[],customAttributeItems:[],specificationItems:[]},tbItemList:[]
-                    editor.html('');
+                    // $scope.entity={};//tbGoods:{},tbGoodsDesc:{itemImages:[],customAttributeItems:[],specificationItems:[]},tbItemList:[]
+                    // editor.html('');
                     location.href="goods.html";
                 } else {
                     alert(response.message);
@@ -91,8 +91,8 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
                 if (response.success) {
                     //重新查询
                     alert(response.message);
-                    $scope.entity={};//tbGoods:{},tbGoodsDesc:{itemImages:[],customAttributeItems:[],specificationItems:[]},tbItemList:[]
-                    editor.html('');
+                    // $scope.entity={};//tbGoods:{},tbGoodsDesc:{itemImages:[],customAttributeItems:[],specificationItems:[]},tbItemList:[]
+                    // editor.html('');
                     location.href="goods.html";
                 } else {
                     alert(response.message);
@@ -142,6 +142,7 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
 
     //列表添加图片
     $scope.addImageEntity = function () {
+
         $scope.entity.tbGoodsDesc.itemImages.push($scope.imageEntity);
     }
     //列表删除图片
@@ -162,8 +163,9 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
                 $scope.typeTemplate.brandIds = JSON.parse($scope.typeTemplate.brandIds);
 
                 if($location.search().id == null){
-
                     $scope.entity.tbGoodsDesc.customAttributeItems = JSON.parse($scope.typeTemplate.customAttributeItems);
+                }else{
+                    // $scope.entity.tbGoodsDesc.customAttributeItems = ;---------------------------------------------------------------------------
                 }
 
             })
@@ -207,6 +209,9 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
             itemCatService.findByParentId(newValue).success(function (data) {
                 $scope.itemCat3List = data;
             })
+
+
+
         }
     });
 

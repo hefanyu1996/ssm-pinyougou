@@ -112,5 +112,24 @@ public class GoodsController {
 	public PageResult search(@RequestBody TbGoods goods, int page, int rows  ){
 		return goodsService.findPage(goods, page, rows);		
 	}
+
+	/**
+	 * 商品审核
+	 * @param ids
+	 * @param auditStatus
+	 * @return
+	 */
+	@RequestMapping("/auditGoods")
+	public Result auditGoods(Long[] ids,String auditStatus){
+
+		try {
+			goodsService.auditGoods(ids,auditStatus);
+			return new Result(true,"审核完成");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false,"审核失败");
+		}
+
+	}
 	
 }

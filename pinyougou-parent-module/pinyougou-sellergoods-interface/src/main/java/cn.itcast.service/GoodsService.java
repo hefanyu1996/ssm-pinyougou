@@ -59,5 +59,11 @@ public interface GoodsService {
 	 * @return
 	 */
 	public PageResult findPage(TbGoods goods, int pageNum,int pageSize);
-	
+
+	/**
+	 * 商品审核
+	 * @param ids
+	 * @param auditStatus
+	 */
+	void auditGoods(Long[] ids, String auditStatus);
 }

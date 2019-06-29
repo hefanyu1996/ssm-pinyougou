@@ -28,5 +28,11 @@ app.service('goodsService',function($http){
 	//搜索
 	this.search=function(page,rows,searchEntity){
 		return $http.post('../goods/search.do?page='+page+"&rows="+rows, searchEntity);
-	}    	
+	}
+
+	//商品审核
+	this.auditGoods = function (status, ids) {
+		return $http.get('../goods/auditGoods.do?status='+status+"&ids="+ids);
+	}
+
 });

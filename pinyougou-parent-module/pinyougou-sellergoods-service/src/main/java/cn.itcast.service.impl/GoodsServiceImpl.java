@@ -57,7 +57,12 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public PageResult findPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        Page<TbGoods> page = (Page<TbGoods>) goodsMapper.selectByExample(null);
+
+        TbGoodsExample tbGoodsExample = new TbGoodsExample();
+        TbGoodsExample.Criteria criteria = tbGoodsExample.createCriteria();
+        //只显示isDelete为null的商品（逻辑删除）
+        criteria.andIsDeleteIsNull();
+        Page<TbGoods> page = (Page<TbGoods>) goodsMapper.selectByExample(tbGoodsExample);
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -213,12 +218,18 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     /**
-     * 批量删除
+     * 批量删除（逻辑删除）
      */
     @Override
     public void delete(Long[] ids) {
         for (Long id : ids) {
-            goodsMapper.deleteByPrimaryKey(id);
+            //逻辑删除
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(id);
+            tbGoods.setIsDelete("1");
+
+            goodsMapper.updateByPrimaryKey(tbGoods);
+//            goodsMapper.deleteByPrimaryKey(id);
+
         }
     }
 
@@ -261,6 +272,29 @@ public class GoodsServiceImpl implements GoodsService {
 
         Page<TbGoods> page = (Page<TbGoods>) goodsMapper.selectByExample(example);
         return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    /**
+     * 商品审核
+     * @param ids 商品id数组
+     * @param auditStatus 更改状态码
+     */
+    @Override
+    public void auditGoods(Long[] ids, String auditStatus) {
+
+        for (Long id : ids) {
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(id);
+            //设置商品审核状态
+            tbGoods.setAuditStatus(auditStatus);
+
+            //修改指定id的商品审核状态
+            TbGoodsExample example = new TbGoodsExample();
+            TbGoodsExample.Criteria criteria = example.createCriteria();
+            //设置商品id
+
+            goodsMapper.updateByPrimaryKey(tbGoods);
+        }
+
     }
 
 

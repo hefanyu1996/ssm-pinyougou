@@ -103,21 +103,9 @@
 									      <td>{{itemCatList[entity.category3Id]}}</td>
 		                                  <td>
 											  {{statusName[entity.auditStatus]}}
-		                                  	<!--<span ng-model="" ng-if="entity.auditStatus == 0" >
-		                                  		未申请
-		                                  	</span>
-		                                  	<span  ng-model="" ng-if="entity.auditStatus == 1" >
-		                                  		申请中
-		                                  	</span>
-		                                  	<span  ng-model="" ng-if="entity.auditStatus == 2" >
-		                                  		审核通过
-		                                  	</span>
-		                                  	<span  ng-model="" ng-if="entity.auditStatus == 3" >
-		                                  		已驳回
-		                                  	</span>-->
 		                                  </td>		                                  
-		                                  <td class="text-center">                                          
-		                                 	  <button type="button" class="btn bg-olive btn-xs" ng-click="jumpUpdate(entity.id)">修改</button>
+		                                  <td class="text-center">
+                                                  <a href="goods_edit.html#?id={{entity.id}}" class="btn bg-olive btn-xs">修改</a>
 		                                  </td>
 			                          </tr>
 			                      </tbody>
