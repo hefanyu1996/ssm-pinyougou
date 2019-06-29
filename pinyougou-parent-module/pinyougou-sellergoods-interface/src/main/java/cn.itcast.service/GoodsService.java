@@ -66,4 +66,13 @@ public interface GoodsService {
 	 * @param auditStatus
 	 */
 	void auditGoods(Long[] ids, String auditStatus);
+
+
+	/**
+	 * 商品上/下架
+	 * @param ids
+	 * @param marketable
+	 */
+	void setMarketable(Long[] ids, String marketable);
+
 }

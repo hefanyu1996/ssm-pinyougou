@@ -54,15 +54,18 @@ app.controller('goodsController', function ($scope, $controller, goodsService, i
 
     //批量删除
     $scope.dele = function () {
-        //获取选中的复选框
-        goodsService.dele($scope.selectIds).success(
-            function (response) {
-                if (response.success) {
-                    $scope.reloadList();//刷新列表
-                    $scope.selectIds = [];
+        if(confirm("确定要删除吗？")){
+            //获取选中的复选框
+            goodsService.dele($scope.selectIds).success(
+                function (response) {
+                    if (response.success) {
+                        $scope.reloadList();//刷新列表
+                        $scope.selectIds = [];
+                    }
                 }
-            }
-        );
+            );
+        }
+
     }
 
     $scope.searchEntity = {};//定义搜索对象

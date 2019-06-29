@@ -58,11 +58,7 @@ public class GoodsServiceImpl implements GoodsService {
     public PageResult findPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
 
-        TbGoodsExample tbGoodsExample = new TbGoodsExample();
-        TbGoodsExample.Criteria criteria = tbGoodsExample.createCriteria();
-        //只显示isDelete为null的商品（逻辑删除）
-        criteria.andIsDeleteIsNull();
-        Page<TbGoods> page = (Page<TbGoods>) goodsMapper.selectByExample(tbGoodsExample);
+        Page<TbGoods> page = (Page<TbGoods>) goodsMapper.selectByExample(null);
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -242,6 +238,8 @@ public class GoodsServiceImpl implements GoodsService {
         TbGoodsExample example = new TbGoodsExample();
         TbGoodsExample.Criteria criteria = example.createCriteria();
 
+        //只显示isDelete为null的商品（逻辑删除）
+        criteria.andIsDeleteIsNull();
         if (goods != null) {
             if (goods.getSellerId() != null && goods.getSellerId().length() > 0) {
                 criteria.andSellerIdEqualTo(goods.getSellerId());
@@ -292,6 +290,22 @@ public class GoodsServiceImpl implements GoodsService {
             TbGoodsExample.Criteria criteria = example.createCriteria();
             //设置商品id
 
+            goodsMapper.updateByPrimaryKey(tbGoods);
+        }
+
+    }
+
+
+    /**
+     * 商品上/下架
+     * @param ids
+     * @param marketable
+     */
+    @Override
+    public void setMarketable(Long[] ids, String marketable) {
+        for( Long id : ids ){
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(id);
+            tbGoods.setIsMarketable(marketable);
             goodsMapper.updateByPrimaryKey(tbGoods);
         }
 
