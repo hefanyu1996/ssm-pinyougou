@@ -30,8 +30,4 @@ app.service('contentCategoryService',function($http){
 		return $http.post('../contentCategory/search.do?page='+page+"&rows="+rows, searchEntity);
 	}
 
-	//查询广告分类列表
-	this.findContentCategoryList = function () {
-		return $http.get('../contentCategory/findAll.do');
-	}
 });

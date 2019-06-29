@@ -60,7 +60,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default" title="新建" data-toggle="modal"
                             data-target="#editModal"
-                            ng-click="entity={pic:'http://192.168.25.133/group1/M00/00/00/wKgZhV0SVeuAUkVXAADHPGEnsUA567.jpg'}">
+                            ng-click="entity={pic:'http://192.168.25.133/group1/M00/00/00/wKgZhV0XryGADgMLAADJDk_1xms074.png'}">
                         <i class="fa fa-file-o"></i> 新建
                     </button>
                     <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i
@@ -145,8 +145,8 @@
                         <td>分类</td>
 
                         <td>
-                            <select ng-model="entity.categoryId"
-                                    mg-options="category.id as category.name for category in contentCategoryList">
+                            <select class="form-control" ng-model="entity.categoryId"
+                                    ng-options="category.id as category.name for category in contentCategoryList">
                             </select>
                         </td>
 
@@ -173,15 +173,11 @@
                             <div id="upload_div" class="col-xs-6 col-md-12 thumbnail">
                                 <input id="upload_input" type="file">
                                 <img src="{{entity.pic}}" width="100px" height="50px" alt="上传图片">
-                                <div class="caption">
+                                <div class="caption" align="center">
                                     <h3>点击图片上传</h3>
                                     <button ng-click="uploadFile()"
-                                            class="btn btn-default col-xs-6 col-md-12 thumbnail">提交图片
+                                            class="btn btn-primary">提交图片
                                     </button>
-                                    <p><a href="#" class="btn btn-primary" role="button">提交</a> <a href="#"
-                                                                                                   class="btn btn-default"
-                                                                                                   role="button">Button</a>
-                                    </p>
                                 </div>
                             </div>
                         </td>
@@ -191,8 +187,8 @@
 
                         <td>状态</td>
 
-                        <td><input class="form-control" type="checkbox" ng-true-value="1" ng-false-value="0"
-                                   ng-model="entity.status" placeholder="状态"></td>
+                        <td>启用/关闭：<input type="checkbox" ng-true-value="1" ng-false-value="0"
+                                   ng-model="entity.status"></td>
 
                     </tr>
                     <tr>

@@ -78,8 +78,8 @@ app.controller('contentController' ,function($scope,$controller   ,contentServic
 	}
 
 	//上传文件
-	$scope.updateFile = function () {
-		uploadService.updateFile().success(function (data) {
+	$scope.uploadFile = function () {
+		uploadService.uploadFile().success(function (data) {
 			if(data.success){
 				$scope.entity.pic = data.message;
 			}else{
@@ -91,11 +91,11 @@ app.controller('contentController' ,function($scope,$controller   ,contentServic
 	}
 
 	//广告状态格式化
-	$scope.status = ["有效","无效"];
+	$scope.status = ["无效","有效"];
 
 	//加载广告分类列表
 	$scope.findContentCategoryList = function () {
-		contentCategoryService.findContentCategoryList().success(function (data) {
+		contentCategoryService.findAll().success(function (data) {
 			$scope.contentCategoryList = data;
 		})
 	}
