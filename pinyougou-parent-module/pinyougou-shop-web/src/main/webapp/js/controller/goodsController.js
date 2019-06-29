@@ -1,5 +1,5 @@
 //控制层
-app.controller('goodsController', function ($scope, $controller,$location, goodsService,uploadService,itemCatService,typeTemplateService) {
+app.controller('goodsController', function ($scope, $controller, $location, goodsService, uploadService, itemCatService, typeTemplateService) {
 
     $controller('baseController', {$scope: $scope});//继承
 
@@ -27,7 +27,7 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
 
         var id = $location.search().id;
 
-        if(id== null){
+        if (id == null) {
             return;
         }
 
@@ -40,7 +40,7 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
                 $scope.entity.tbGoodsDesc.specificationItems = JSON.parse($scope.entity.tbGoodsDesc.specificationItems);
                 $scope.entity.tbGoodsDesc.customAttributeItems = JSON.parse($scope.entity.tbGoodsDesc.customAttributeItems);
 
-                for(var i = 0 ; i< $scope.entity.tbItemList.length ;i++ ){
+                for (var i = 0; i < $scope.entity.tbItemList.length; i++) {
                     $scope.entity.tbItemList[i].spec = JSON.parse($scope.entity.tbItemList[i].spec);
                 }
             }
@@ -54,16 +54,20 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     }*/
 
     //save数据
-    $scope.save = function(){
-        if($scope.entity.tbGoods.id==null){
+    $scope.save = function () {
+        if ($scope.entity.tbGoods.id == null) {
             $scope.add();
-        }else{
+        } else {
             $scope.update();
         }
     }
 
     //定义entity数据结构
-    $scope.entity = {tbGoods:{},tbGoodsDesc:{itemImages:[],specificationItems:[],customAttributeItems:[]},tbItemList:[]};
+    $scope.entity = {
+        tbGoods: {},
+        tbGoodsDesc: {itemImages: [], specificationItems: [], customAttributeItems: []},
+        tbItemList: []
+    };
 
     //更新
     $scope.update = function () {
@@ -75,7 +79,7 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
                     alert(response.message);
                     // $scope.entity={};//tbGoods:{},tbGoodsDesc:{itemImages:[],customAttributeItems:[],specificationItems:[]},tbItemList:[]
                     // editor.html('');
-                    location.href="goods.html";
+                    location.href = "goods.html";
                 } else {
                     alert(response.message);
                 }
@@ -93,7 +97,7 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
                     alert(response.message);
                     // $scope.entity={};//tbGoods:{},tbGoodsDesc:{itemImages:[],customAttributeItems:[],specificationItems:[]},tbItemList:[]
                     // editor.html('');
-                    location.href="goods.html";
+                    location.href = "goods.html";
                 } else {
                     alert(response.message);
                 }
@@ -104,7 +108,7 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
 
     //批量删除
     $scope.dele = function () {
-        if(confirm("是否删除选中？")){
+        if (confirm("是否删除选中？")) {
             //获取选中的复选框
             goodsService.dele($scope.selectIds).success(
                 function (response) {
@@ -130,12 +134,12 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
         );
     }
 
-    $scope.imageEntity ={};
+    $scope.imageEntity = {};
     $scope.uploadFile = function () {
         uploadService.uploadFile().success(function (data) {
-            if(data.success){
+            if (data.success) {
                 $scope.imageEntity.url = data.message;
-            }else{
+            } else {
                 alert(data.message);
             }
         }).error(function () {
@@ -150,24 +154,23 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     }
     //列表删除图片
     $scope.deleImageEntity = function (index) {
-        $scope.entity.tbGoodsDesc.itemImages.splice(index,1);
+        $scope.entity.tbGoodsDesc.itemImages.splice(index, 1);
     }
 
 
     //显示模板中品牌列表
-    $scope.$watch('entity.tbGoods.typeTemplateId',function (newValue, oldValue) {
+    $scope.$watch('entity.tbGoods.typeTemplateId', function (newValue, oldValue) {
 
 
-
-        if(newValue!=undefined){
+        if (newValue != undefined) {
             typeTemplateService.findOne(newValue).success(function (data) {
 
                 $scope.typeTemplate = data;
                 $scope.typeTemplate.brandIds = JSON.parse($scope.typeTemplate.brandIds);
 
-                if($location.search().id == null){
+                if ($location.search().id == null) {
                     $scope.entity.tbGoodsDesc.customAttributeItems = JSON.parse($scope.typeTemplate.customAttributeItems);
-                }else{
+                } else {
                     // $scope.entity.tbGoodsDesc.customAttributeItems = ;---------------------------------------------------------------------------
                 }
 
@@ -191,8 +194,8 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     }
 
     //查询二级分类列表
-    $scope.$watch('entity.tbGoods.category1Id',function (newValue, oldValue) {
-        if(newValue!=undefined){
+    $scope.$watch('entity.tbGoods.category1Id', function (newValue, oldValue) {
+        if (newValue != undefined) {
             $scope.typeTemplate = null;
 
             itemCatService.findByParentId(newValue).success(function (data) {
@@ -204,8 +207,8 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     });
 
     //查询三级分类列表
-    $scope.$watch('entity.tbGoods.category2Id',function (newValue, oldValue) {
-        if(newValue!=undefined) {
+    $scope.$watch('entity.tbGoods.category2Id', function (newValue, oldValue) {
+        if (newValue != undefined) {
             //置空品牌列表
             $scope.typeTemplate = null;
 
@@ -214,13 +217,12 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
             })
 
 
-
         }
     });
 
     //显示分类1 模板id
-    $scope.$watch('entity.tbGoods.category1Id',function (newValue, oldValue) {
-        if(newValue!=undefined){
+    $scope.$watch('entity.tbGoods.category1Id', function (newValue, oldValue) {
+        if (newValue != undefined) {
             itemCatService.findOne(newValue).success(function (data) {
                 $scope.entity.tbGoods.typeTemplateId = null;
             })
@@ -229,8 +231,8 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     })
 
     //显示分类2模板id
-    $scope.$watch('entity.tbGoods.category2Id',function (newValue, oldValue) {
-        if(newValue!=undefined){
+    $scope.$watch('entity.tbGoods.category2Id', function (newValue, oldValue) {
+        if (newValue != undefined) {
             itemCatService.findOne(newValue).success(function (data) {
                 $scope.entity.tbGoods.typeTemplateId = null;
             })
@@ -239,8 +241,8 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     })
 
     //显示分类3模板id
-    $scope.$watch('entity.tbGoods.category3Id',function (newValue, oldValue) {
-        if(newValue!=undefined){
+    $scope.$watch('entity.tbGoods.category3Id', function (newValue, oldValue) {
+        if (newValue != undefined) {
             itemCatService.findOne(newValue).success(function (data) {
                 $scope.entity.tbGoods.typeTemplateId = data.typeId;
             })
@@ -249,41 +251,39 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     })
 
 
-
     //插入选中规格信息
-    $scope.updateSpecAttribute = function ($event,name, value) {
+    $scope.updateSpecAttribute = function ($event, name, value) {
 
-        var object = $scope.searchObjectByKey($scope.entity.tbGoodsDesc.specificationItems,"attributeName",name);
+        var object = $scope.searchObjectByKey($scope.entity.tbGoodsDesc.specificationItems, "attributeName", name);
 
-        if(object !=null){
-            if($event.target.checked){
+        if (object != null) {
+            if ($event.target.checked) {
                 object.attributeValue.push(value);
-            }else{
+            } else {
                 var index = object.attributeValue.indexOf(value);//获取要移除选项索引
-                object.attributeValue.splice(index,1);//移出选项
+                object.attributeValue.splice(index, 1);//移出选项
                 //如果选项都取消
-                if(object.attributeValue.length <=0){
+                if (object.attributeValue.length <= 0) {
                     var indexObj = $scope.entity.tbGoodsDesc.specificationItems.indexOf(object);
-                    $scope.entity.tbGoodsDesc.specificationItems.splice(indexObj,1);
+                    $scope.entity.tbGoodsDesc.specificationItems.splice(indexObj, 1);
                 }
             }
-        }else{
-            $scope.entity.tbGoodsDesc.specificationItems.push({"attributeName":name,"attributeValue":[value]});
+        } else {
+            $scope.entity.tbGoodsDesc.specificationItems.push({"attributeName": name, "attributeValue": [value]});
         }
     }
-
 
 
     //创建SKU列表
     $scope.createItemList = function () {
         //初始化
-        $scope.entity.tbItemList = [{spec:{},price:0,num:99999,status:'0',isDefault:'0'}];
+        $scope.entity.tbItemList = [{spec: {}, price: 0, num: 99999, status: '0', isDefault: '0'}];
 
         var items = $scope.entity.tbGoodsDesc.specificationItems;
 
-        for (var i =0 ;i<items.length; i++){
+        for (var i = 0; i < items.length; i++) {
 
-            $scope.entity.tbItemList = addColumn($scope.entity.tbItemList,items[i].attributeName,items[i].attributeValue);
+            $scope.entity.tbItemList = addColumn($scope.entity.tbItemList, items[i].attributeName, items[i].attributeValue);
 
         }
 
@@ -292,9 +292,9 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     //添加SKU列值
     addColumn = function (list, name, values) {
 
-        var newList=[];//新的集合
+        var newList = [];//新的集合
 
-        for (var i = 0 ; i<list.length ; i++){
+        for (var i = 0; i < list.length; i++) {
 
             var oldRow = list[i];
 
@@ -311,7 +311,7 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     }
 
     //商品状态
-    $scope.statusName = ["未审核","审核通过","审核未通过","已关闭"];
+    $scope.statusName = ["未审核", "审核通过", "审核未通过", "已关闭"];
 
 
     //商品分类
@@ -320,7 +320,7 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
     //查询所有商品分类
     $scope.findItemCatList = function () {
         itemCatService.findAll().success(function (data) {
-            for(var i = 0 ; i < data.length ; i++){
+            for (var i = 0; i < data.length; i++) {
 
                 $scope.itemCatList[data[i].id] = data[i].name;
 
@@ -330,15 +330,15 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
 
 
     //回显规格选项
-    $scope.checkEcho = function (specName,optionName) {
+    $scope.checkEcho = function (specName, optionName) {
 
         var specificationItems = $scope.entity.tbGoodsDesc.specificationItems;
 
-        var specObject = $scope.searchObjectByKey(specificationItems,'attributeName',specName);
+        var specObject = $scope.searchObjectByKey(specificationItems, 'attributeName', specName);
 
-        if(specObject == null){
+        if (specObject == null) {
             return false;
-        }else{
+        } else {
             return specObject.attributeValue.indexOf(optionName) >= 0;
         }
 
@@ -346,21 +346,30 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
 
 
     //商品上/下架
-    $scope.setMarketable = function (marketable) {
+    $scope.setMarketable = function (marketable, id) {
 
         var msg = '';
-
-        if(marketable == 0){
-            msg='商品已下架';
-        }else{
-            msg='商品已上架';
+        if (marketable == 0) {
+            msg = '下架';
+        } else {
+            msg = '上架';
         }
 
-        goodsService.setMarketable($scope.selectIds,marketable).success(function (data) {
-            if(data.success){
-                alert(msg);
+        if (id == null) {
+            if (!confirm("确认"+msg+"吗？")) {
+                return ;
+            }
+        }else{
+            $scope.selectIds = [id];
+        }
+
+        goodsService.setMarketable($scope.selectIds, marketable).success(function (data) {
+            if (data.success) {
+                if(id == null){
+                    alert("商品已" + msg);
+                }
                 $scope.reloadList();
-            }else{
+            } else {
                 alert(data.message);
             }
         })

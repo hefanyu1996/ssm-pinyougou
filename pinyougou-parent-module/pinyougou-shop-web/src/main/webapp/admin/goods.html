@@ -51,10 +51,11 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" ><i class="fa fa-file-o"></i> 新建</button>
+                                        <a type="button" class="btn btn-default" title="新建" href="goods_edit.html" ><i class="fa fa-file-o"></i> 新建</a>
                                         <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="提交审核" ><i class="fa fa-check"></i> 提交审核</button>
-                                        <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
+                                        <button type="button" class="btn btn-default" title="上架" ng-click="setMarketable(1)"><i class="fa fa-ban"></i> 上架</button>
+                                        <button type="button" class="btn btn-default" title="下架" ng-click="setMarketable(0)"><i class="fa fa-ban"></i> 下架</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
@@ -106,8 +107,8 @@
 		                                  </td>		                                  
 		                                  <td class="text-center">
                                                   <a href="goods_edit.html#?id={{entity.id}}" class="btn bg-aqua btn-xs">修改</a>
-                                                  <button ng-if="entity.isMarketable==0||entity.isMarketable==null" ng-click="setMarketable(1)" class="btn bg-olive btn-xs">上架</button>
-                                                  <button ng-if="entity.isMarketable==1" ng-click="setMarketable(0)" class="btn bg-black btn-xs">下架</button>
+                                                  <button ng-if="entity.isMarketable==0||entity.isMarketable==null" ng-click="setMarketable(1,entity.id)" class="btn bg-olive btn-xs">上架</button>
+                                                  <button ng-if="entity.isMarketable==1" ng-click="setMarketable(0,entity.id)" class="btn bg-black btn-xs">下架</button>
 
 		                                  </td>
 			                          </tr>

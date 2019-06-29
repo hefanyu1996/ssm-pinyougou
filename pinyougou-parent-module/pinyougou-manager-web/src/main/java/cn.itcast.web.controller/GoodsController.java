@@ -132,18 +132,7 @@ public class GoodsController {
 
 	}
 
-	//商品上/下架
-	@RequestMapping("/setMarketable.do")
-	public Result setMarketable(Long[] ids,String marketable){
-		try {
-			goodsService.setMarketable(ids,marketable);
-			return new Result(true,"成功");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new Result(false,"服务器正忙");
-		}
 
-	}
 
 	
 }

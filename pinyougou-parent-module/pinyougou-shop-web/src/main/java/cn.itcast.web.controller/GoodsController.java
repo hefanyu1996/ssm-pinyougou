@@ -124,5 +124,23 @@ public class GoodsController {
 		goods.setSellerId(SecurityContextHolder.getContext().getAuthentication().getName());
 		return goodsService.findPage(goods, page, rows);		
 	}
-	
+
+	/**
+	 * 商品上/下架
+	 * @param ids 商品id数组
+	 * @param marketable  1 上架  0 下架
+	 * @return
+	 */
+	@RequestMapping("/setMarketable.do")
+	public Result setMarketable(Long[] ids,String marketable){
+		try {
+			goodsService.setMarketable(ids,marketable);
+			return new Result(true,"成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false,"服务器正忙");
+		}
+
+	}
+
 }
