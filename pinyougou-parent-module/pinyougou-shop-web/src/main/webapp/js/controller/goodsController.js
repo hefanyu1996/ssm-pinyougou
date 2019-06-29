@@ -104,15 +104,18 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
 
     //批量删除
     $scope.dele = function () {
-        //获取选中的复选框
-        goodsService.dele($scope.selectIds).success(
-            function (response) {
-                if (response.success) {
-                    $scope.reloadList();//刷新列表
-                    $scope.selectIds = [];
+        if(confirm("是否删除选中？")){
+            //获取选中的复选框
+            goodsService.dele($scope.selectIds).success(
+                function (response) {
+                    if (response.success) {
+                        $scope.reloadList();//刷新列表
+                        $scope.selectIds = [];
+                    }
                 }
-            }
-        );
+            );
+        }
+
     }
 
     $scope.searchEntity = {};//定义搜索对象
@@ -338,6 +341,29 @@ app.controller('goodsController', function ($scope, $controller,$location, goods
         }else{
             return specObject.attributeValue.indexOf(optionName) >= 0;
         }
+
+    }
+
+
+    //商品上/下架
+    $scope.setMarketable = function (marketable) {
+
+        var msg = '';
+
+        if(marketable == 0){
+            msg='商品已下架';
+        }else{
+            msg='商品已上架';
+        }
+
+        goodsService.setMarketable($scope.selectIds,marketable).success(function (data) {
+            if(data.success){
+                alert(msg);
+                $scope.reloadList();
+            }else{
+                alert(data.message);
+            }
+        })
 
     }
 

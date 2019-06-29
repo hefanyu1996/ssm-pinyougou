@@ -52,7 +52,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" title="新建" ><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="提交审核" ><i class="fa fa-check"></i> 提交审核</button>
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
@@ -94,7 +94,7 @@
 			                      </thead>
 			                      <tbody>
 			                          <tr ng-repeat="entity in list">
-			                              <td><input  type="checkbox" ng-checked="isSelect" ng-click="updateSelection()"></td>
+			                              <td><input  type="checkbox" ng-checked="isSelect" ng-click="updateSelection($event,entity.id)"></td>
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.goodsName}}</td>
 									      <td>{{entity.price}}</td>
@@ -105,7 +105,10 @@
 											  {{statusName[entity.auditStatus]}}
 		                                  </td>		                                  
 		                                  <td class="text-center">
-                                                  <a href="goods_edit.html#?id={{entity.id}}" class="btn bg-olive btn-xs">修改</a>
+                                                  <a href="goods_edit.html#?id={{entity.id}}" class="btn bg-aqua btn-xs">修改</a>
+                                                  <button ng-if="entity.isMarketable==0||entity.isMarketable==null" ng-click="setMarketable(1)" class="btn bg-olive btn-xs">上架</button>
+                                                  <button ng-if="entity.isMarketable==1" ng-click="setMarketable(0)" class="btn bg-black btn-xs">下架</button>
+
 		                                  </td>
 			                          </tr>
 			                      </tbody>

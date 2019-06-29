@@ -30,5 +30,9 @@ app.service('goodsService',function($http){
 		return $http.post('../goods/search.do?page='+page+"&rows="+rows, searchEntity);
 	}
 
+	//商品上/下架
+	this.setMarketable = function (ids,marketable) {
+		return $http.get('../goods/setMarketable.do?ids='+ids+"&marketable="+marketable);
+	}
 
 });
