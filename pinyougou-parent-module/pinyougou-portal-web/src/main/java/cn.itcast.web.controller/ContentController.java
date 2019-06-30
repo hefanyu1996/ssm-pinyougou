@@ -18,7 +18,7 @@ public class ContentController {
     @RequestMapping("/findByCategoryId.do")
     public List<TbContent> findByCategoryId(Long categoryId){
 
-        return contentService.findByCategoryId(categoryId);
+         return contentService.findByCategoryId(categoryId);
     }
 
 }
