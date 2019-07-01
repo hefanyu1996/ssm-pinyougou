@@ -18,7 +18,6 @@ public class SpringDataRedisTest {
 
     @Test
     public void test01(){
-
         BoundHashOperations nameHash = redisTemplate.boundHashOps("nameHash");
         nameHash.put("name","曹操");
 

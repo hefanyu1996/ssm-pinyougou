@@ -73,7 +73,7 @@ public class ContentServiceImpl implements ContentService {
 
         contentMapper.updateByPrimaryKey(content);
 
-        if(content.getCategoryId()!=tbContent.getCategoryId()){
+        if(content.getCategoryId().longValue()!=tbContent.getCategoryId().longValue()){
             redisTemplate.boundHashOps("content").delete(content.getCategoryId());
         }
     }
