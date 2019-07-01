@@ -1073,7 +1073,7 @@ SWFUpload.prototype.unescapeFilePostParams = function (file) {
 	return file;
 };
 
-// Private: Called by Flash to see if JS can call in to Flash (test if External Interface is working)
+// Private: Called by Flash to see if JS can call in to Flash (util if External Interface is working)
 SWFUpload.prototype.testExternalInterface = function () {
 	try {
 		return this.callFlash("TestExternalInterface");

@@ -1,4 +1,4 @@
-package cn.itcast.test;
+package cn.itcast.util;
 
 
 import org.junit.Test;
@@ -18,11 +18,11 @@ public class SpringDataRedisTest {
 
     @Test
     public void test01(){
-        BoundHashOperations nameHash = redisTemplate.boundHashOps("nameHash");
+       /* BoundHashOperations nameHash = redisTemplate.boundHashOps("nameHash");
         nameHash.put("name","曹操");
 
         String name = (String) nameHash.get("name");
-        System.out.println(name);
+        System.out.println(name);*/
     }
 
 

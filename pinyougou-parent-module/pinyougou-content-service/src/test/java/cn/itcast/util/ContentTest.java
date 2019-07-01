@@ -1,4 +1,4 @@
-package cn.itcast.test;
+package cn.itcast.util;
 
 
 import org.junit.Test;
