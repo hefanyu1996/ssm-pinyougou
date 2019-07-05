@@ -10,6 +10,8 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.BoundHashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -26,6 +28,9 @@ public class ItemCatServiceImpl implements ItemCatService {
 
     @Autowired
     private TbItemCatMapper itemCatMapper;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
      * 查询全部
@@ -131,10 +136,21 @@ public class ItemCatServiceImpl implements ItemCatService {
         criteria.andParentIdEqualTo(parentId);
 
 
-        List<TbItemCat> tbItemCats = itemCatMapper.selectByExample(itemCatExample);
 
+        //每次刷新时缓存 商品分类名称 和 对应的模板id
+        //每次执行查询的时候，一次性读取缓存进行存储 (因为每次增删改都要执行此方法)
 
-        return tbItemCats;
+        List<TbItemCat> itemCatList = findAll();
+        for (TbItemCat tbItemCat : itemCatList) {
+            String name = tbItemCat.getName();
+            Long typeId = tbItemCat.getTypeId();
+
+            redisTemplate.boundHashOps("itemCat").put(name,typeId);
+        }
+
+        System.out.println("更新缓存：商品分类表");
+
+        return itemCatMapper.selectByExample(itemCatExample);
     }
 
 

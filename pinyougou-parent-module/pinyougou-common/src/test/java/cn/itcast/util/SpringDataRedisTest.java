@@ -4,10 +4,12 @@ package cn.itcast.util;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Map;
+import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/applicationContext-redis.xml")
@@ -17,12 +19,17 @@ public class SpringDataRedisTest {
     private RedisTemplate redisTemplate;
 
     @Test
-    public void test01(){
-       /* BoundHashOperations nameHash = redisTemplate.boundHashOps("nameHash");
-        nameHash.put("name","曹操");
+    public void test01() {
 
-        String name = (String) nameHash.get("name");
-        System.out.println(name);*/
+
+        Map itemCat = redisTemplate.boundHashOps("itemCat").entries();
+        for (Object o : itemCat.keySet()) {
+            System.out.println(o);
+            System.out.println(itemCat.get(o));
+        }
+
+
+
     }
 
 

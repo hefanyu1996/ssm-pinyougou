@@ -48,10 +48,10 @@ public class SolrUtil {
             //设置实体类动态域映射的属性
             tbItem.setSpecMap(specMap);
         }
-        //导入商品数据
+    //导入商品数据
         solrTemplate.saveBeans(tbItemList);
         solrTemplate.commit();
-    }
+}
 
     public static void main(String[] args) {
 
@@ -59,9 +59,9 @@ public class SolrUtil {
 
         SolrUtil solrUtil = (SolrUtil) app.getBean("solrUtil");
 
-        solrUtil.deleteAll();
+//        solrUtil.deleteAll();
 
-//        solrUtil.importItemData();
+        solrUtil.importItemData();
 
 
     }

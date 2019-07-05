@@ -4,6 +4,8 @@
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-content-service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-manager-web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-portal-web" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-service" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-sellergoods-service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-shop-web" />
   </component>
@@ -13,11 +15,6 @@
         <option value="$PROJECT_DIR$/pinyougouparentmodule/pom.xml" />
         <option value="$PROJECT_DIR$/pinyougou-parent-module/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/pinyougou-parent-module/pinyougou-service/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
