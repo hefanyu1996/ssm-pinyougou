@@ -32,7 +32,7 @@ app.service('goodsService',function($http){
 
 	//商品审核
 	this.auditGoods = function (status, ids) {
-		return $http.get('../goods/auditGoods.do?status='+status+"&ids="+ids);
+		return $http.get('../goods/auditGoods.do?ids='+ids+'&status='+status);
 	}
 
 });

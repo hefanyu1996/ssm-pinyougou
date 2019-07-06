@@ -2,6 +2,7 @@ package cn.itcast.service;
 import java.util.List;
 import cn.itcast.pojo.TbGoods;
 
+import cn.itcast.pojo.TbItem;
 import entity.PageResult;
 import pojogroup.Goods;
 
@@ -74,5 +75,14 @@ public interface GoodsService {
 	 * @param marketable
 	 */
 	void setMarketable(Long[] ids, String marketable);
+
+
+	/**
+	 * 根据id 查询审核通过的sku列表
+	 * @param goodsIds
+	 * @param status
+	 * @return
+	 */
+	List<TbItem> findItemListByGoodsIdandStatus(Long[] goodsIds, String status);
 
 }

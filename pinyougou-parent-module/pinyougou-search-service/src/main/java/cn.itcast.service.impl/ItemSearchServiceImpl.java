@@ -11,10 +11,8 @@ import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.core.query.*;
 import org.springframework.data.solr.core.query.result.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 @Service(timeout = 5000)
 public class ItemSearchServiceImpl implements ItemSearchService {
@@ -52,6 +50,34 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 
 
         return resultMap;
+    }
+
+    /**
+     * 审核通过 将sku同步导入索引库
+     * @param list
+     */
+    @Override
+    public void importList(List<TbItem> list) {
+        //将sku列表导入solr索引库
+        solrTemplate.saveBeans(list);
+        //将数据提交
+        solrTemplate.commit();
+    }
+
+    /**
+     * 运营商删除商品时 同步删除solr索引库中sku数据
+     * @param ids
+     */
+    @Override
+    public void deleteSolrSku(List ids) {
+
+        SolrDataQuery query = new SimpleQuery();
+        Criteria criteria = new Criteria("item_goodsId").in(ids) ;
+        query.addCriteria(criteria);
+
+        solrTemplate.delete(query);
+        solrTemplate.commit();
+
     }
 
 

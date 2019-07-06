@@ -1,6 +1,11 @@
 package cn.itcast.web.controller;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
+import cn.itcast.pojo.TbItem;
+import cn.itcast.service.ItemSearchService;
+import cn.itcast.service.ItemService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +28,9 @@ public class GoodsController {
 
 	@Reference
 	private GoodsService goodsService;
+
+	@Reference(timeout = 100000)
+	private ItemSearchService itemSearchService;
 	
 	/**
 	 * 返回全部列表
@@ -94,6 +102,10 @@ public class GoodsController {
 	public Result delete(Long [] ids){
 		try {
 			goodsService.delete(ids);
+
+			//同步删除索引库中sku
+			itemSearchService.deleteSolrSku(Arrays.asList(ids));
+
 			return new Result(true, "删除成功"); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,14 +128,28 @@ public class GoodsController {
 	/**
 	 * 商品审核
 	 * @param ids
-	 * @param auditStatus
+	 * @param status
 	 * @return
 	 */
 	@RequestMapping("/auditGoods")
-	public Result auditGoods(Long[] ids,String auditStatus){
+	public Result auditGoods(Long[] ids,String status){
 
 		try {
-			goodsService.auditGoods(ids,auditStatus);
+			goodsService.auditGoods(ids,status);
+
+			if("1".equals(status)){
+
+				List<TbItem> skuList = goodsService.findItemListByGoodsIdandStatus(ids, status);
+
+				if(skuList.size() > 0){
+
+					itemSearchService.importList(skuList);
+
+				}else{
+					System.out.println("没有sku明细数据");
+				}
+
+			}
 			return new Result(true,"审核完成");
 		} catch (Exception e) {
 			e.printStackTrace();

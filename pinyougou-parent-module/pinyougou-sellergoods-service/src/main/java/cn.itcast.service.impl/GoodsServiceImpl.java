@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import pojogroup.Goods;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -310,6 +312,26 @@ public class GoodsServiceImpl implements GoodsService {
             goodsMapper.updateByPrimaryKey(tbGoods);
         }
 
+    }
+
+    /**
+     * 根据goodsIds 和 status 查询suk列表
+     * @param goodsIds
+     * @param status
+     * @return
+     */
+    @Override
+    public List<TbItem> findItemListByGoodsIdandStatus(Long[] goodsIds, String status) {
+
+        TbItemExample example = new TbItemExample();
+        TbItemExample.Criteria criteria = example.createCriteria();
+        //根据goodsIds查询的sku列表
+        criteria.andGoodsIdIn(Arrays.asList(goodsIds));
+        //设置状态条件
+        criteria.andStatusEqualTo(status);
+        List<TbItem> tbItemList = itemMapper.selectByExample(example);
+
+        return tbItemList;
     }
 
 
