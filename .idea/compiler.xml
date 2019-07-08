@@ -12,6 +12,9 @@
         <module name="pinyougou-content-service" />
         <module name="pinyougou-dao" />
         <module name="pinyougou-manager-web" />
+        <module name="pinyougou-page-interface" />
+        <module name="pinyougou-page-service" />
+        <module name="pinyougou-page-web" />
         <module name="pinyougou-pojo" />
         <module name="pinyougou-portal-web" />
         <module name="pinyougou-search-interface" />
@@ -21,6 +24,9 @@
         <module name="pinyougou-sellergoods-service" />
         <module name="pinyougou-shop-web" />
         <module name="pinyougou-solr-util" />
+        <module name="springjms_consumer" />
+        <module name="springjms_producer" />
+        <module name="springjmsproducer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -29,6 +35,9 @@
       <module name="pinyougou-content-service" target="8" />
       <module name="pinyougou-dao" target="8" />
       <module name="pinyougou-manager-web" target="8" />
+      <module name="pinyougou-page-interface" target="8" />
+      <module name="pinyougou-page-service" target="8" />
+      <module name="pinyougou-page-web" target="8" />
       <module name="pinyougou-parent-module" target="8" />
       <module name="pinyougou-pojo" target="8" />
       <module name="pinyougou-portal-web" target="8" />
@@ -41,6 +50,9 @@
       <module name="pinyougou-shop-web" target="8" />
       <module name="pinyougou-solr-util" target="8" />
       <module name="pinyougousearchservice" target="8" />
+      <module name="springjms_consumer" target="1.5" />
+      <module name="springjms_producer" target="1.5" />
+      <module name="springjmsproducer" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

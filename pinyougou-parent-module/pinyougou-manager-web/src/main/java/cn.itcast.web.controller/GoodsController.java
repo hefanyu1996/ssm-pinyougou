@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import cn.itcast.pojo.TbItem;
-import cn.itcast.service.ItemSearchService;
 import cn.itcast.service.ItemService;
+import com.alibaba.fastjson.JSON;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +19,11 @@ import cn.itcast.service.GoodsService;
 import entity.PageResult;
 import entity.Result;
 import pojogroup.Goods;
+
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 
 /**
  * controller
@@ -29,28 +37,40 @@ public class GoodsController {
 	@Reference
 	private GoodsService goodsService;
 
-	@Reference(timeout = 100000)
-	private ItemSearchService itemSearchService;
-	
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
+	@Autowired
+	private Destination queueTextDestination;
+
+	@Autowired
+	private Destination queueDeleteTextDestination;
+
+	@Autowired
+	private Destination topicCreateHtmlDestination;
+
+	@Autowired
+	private Destination topicDeleteHtmlDestination;
+
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
 	@RequestMapping("/findAll")
-	public List<TbGoods> findAll(){			
+	public List<TbGoods> findAll(){
 		return goodsService.findAll();
 	}
-	
-	
+
+
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
 	@RequestMapping("/findPage")
-	public PageResult  findPage(int page,int rows){			
+	public PageResult  findPage(int page,int rows){
 		return goodsService.findPage(page, rows);
 	}
-	
+
 	/**
 	 * 增加
 	 * @param goods
@@ -66,7 +86,7 @@ public class GoodsController {
 			return new Result(false, "增加失败");
 		}
 	}
-	
+
 	/**
 	 * 修改
 	 * @param goods
@@ -81,8 +101,8 @@ public class GoodsController {
 			e.printStackTrace();
 			return new Result(false, "修改失败");
 		}
-	}	
-	
+	}
+
 	/**
 	 * 获取实体
 	 * @param id
@@ -90,9 +110,9 @@ public class GoodsController {
 	 */
 	@RequestMapping("/findOne")
 	public Goods findOne(Long id){
-		return goodsService.findOne(id);		
+		return goodsService.findOne(id);
 	}
-	
+
 	/**
 	 * 批量删除
 	 * @param ids
@@ -104,15 +124,32 @@ public class GoodsController {
 			goodsService.delete(ids);
 
 			//同步删除索引库中sku
-			itemSearchService.deleteSolrSku(Arrays.asList(ids));
+//			itemSearchService.deleteSolrSku(Arrays.asList(ids));
+			jmsTemplate.send(queueDeleteTextDestination, new MessageCreator() {
+				@Override
+				public Message createMessage(Session session) throws JMSException {
+					return session.createObjectMessage(ids);
+				}
+			});
 
-			return new Result(true, "删除成功"); 
+
+			//同步删除商品详情页
+			jmsTemplate.send(topicDeleteHtmlDestination, new MessageCreator() {
+				@Override
+				public Message createMessage(Session session) throws JMSException {
+					return session.createObjectMessage(ids);
+				}
+			});
+
+
+
+			return new Result(true, "删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Result(false, "删除失败");
 		}
 	}
-	
+
 		/**
 	 * 查询+分页
 	 * @param goods
@@ -122,7 +159,7 @@ public class GoodsController {
 	 */
 	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbGoods goods, int page, int rows  ){
-		return goodsService.findPage(goods, page, rows);		
+		return goodsService.findPage(goods, page, rows);
 	}
 
 	/**
@@ -143,10 +180,36 @@ public class GoodsController {
 
 				if(skuList.size() > 0){
 
-					itemSearchService.importList(skuList);
+//					itemSearchService.importList(skuList);
+					//将skuList转为json字符串
+					final String jsonString = JSON.toJSONString(skuList);
+
+					jmsTemplate.send(queueTextDestination, new MessageCreator() {
+						@Override
+						public Message createMessage(Session session) throws JMSException {
+
+							return session.createTextMessage(jsonString);
+
+						}
+					});
 
 				}else{
 					System.out.println("没有sku明细数据");
+				}
+
+
+				//生成静态商品详情页
+				for (Long id : ids) {
+
+					//发送商品id给page服务生成商品静态页
+					jmsTemplate.send(topicCreateHtmlDestination, new MessageCreator() {
+                        @Override
+                        public Message createMessage(Session session) throws JMSException {
+                        	//发送商品id信息
+                            return session.createObjectMessage(id);
+                        }
+                    });
+
 				}
 
 			}
@@ -160,5 +223,15 @@ public class GoodsController {
 
 
 
-	
+/*	@RequestMapping("/genHtml.do")
+	public void genHtml(Long goodsId){
+
+		boolean flag = itemPageService.genItemHtml(goodsId);
+		System.out.println(flag);
+
+	}*/
+
+
+
+
 }

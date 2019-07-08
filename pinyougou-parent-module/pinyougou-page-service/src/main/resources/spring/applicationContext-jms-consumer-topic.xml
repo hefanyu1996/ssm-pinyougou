@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供-->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://192.168.25.110:61616"/>
+    </bean>
+
+    <!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
+    </bean>
+
+    <!--这个是队列目的地  发布订阅模式  #同步生成商品详情页至nginx-->
+    <bean id="topicCreateHtmlDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="pinyougou_topic_nginx_html"/>
+    </bean>
+
+    <!-- 我的监听类 -->
+    <bean id="itemPageCreateHtmlListener" class="cn.itcast.service.impl.ItemPageCreateHtmlListener"></bean>
+    <!-- 消息监听容器 -->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="topicCreateHtmlDestination"/>
+        <property name="messageListener" ref="itemPageCreateHtmlListener"/>
+    </bean>
+
+
+    <!--这个是队列目的地  发布订阅模式  #同步删除商品详情页至nginx-->
+    <bean id="topicDeleteHtmlDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="pinyougou_topic_delete_html"/>
+    </bean>
+
+    <!-- 我的监听类 -->
+    <bean id="itemPageDeleteHtmlListener" class="cn.itcast.service.impl.ItemPageDeleteHtmlListener"></bean>
+    <!-- 消息监听容器 -->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="topicDeleteHtmlDestination"/>
+        <property name="messageListener" ref="itemPageDeleteHtmlListener"/>
+    </bean>
+
+
+</beans>

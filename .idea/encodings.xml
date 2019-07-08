@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-content-interface" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-content-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-dao" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-manager-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-page-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-page-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-page-service/src/main/webapp/WEB-INF/ftl/foot.ftl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-page-service/src/main/webapp/WEB-INF/ftl/head.ftl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-page-service/src/main/webapp/WEB-INF/ftl/item.ftl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-page-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-pojo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-portal-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-interface" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-serivce" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-sellergoods-interface" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-sellergoods-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-shop-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-solr-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/springjms-producer" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

@@ -3,6 +3,8 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-content-service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-manager-web" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-page-service" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-page-web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-portal-web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-web" />
@@ -14,7 +16,14 @@
       <list>
         <option value="$PROJECT_DIR$/pinyougouparentmodule/pom.xml" />
         <option value="$PROJECT_DIR$/pinyougou-parent-module/pom.xml" />
+        <option value="$PROJECT_DIR$/springjms_producer/pom.xml" />
+        <option value="$PROJECT_DIR$/springjms_consumer/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/pinyougou-parent-module/springjms-producer/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
