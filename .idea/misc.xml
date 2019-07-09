@@ -23,6 +23,8 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/pinyougou-parent-module/springjms-producer/pom.xml" />
+        <option value="$PROJECT_DIR$/springjms_consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/springjms_producer/pom.xml" />
       </set>
     </option>
   </component>

@@ -20,8 +20,6 @@
       <module fileurl="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-sellergoods-service/pinyougou-sellergoods-service.iml" filepath="$PROJECT_DIR$/pinyougou-parent-module/pinyougou-sellergoods-service/pinyougou-sellergoods-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-shop-web/pinyougou-shop-web.iml" filepath="$PROJECT_DIR$/pinyougou-parent-module/pinyougou-shop-web/pinyougou-shop-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-solr-util/pinyougou-solr-util.iml" filepath="$PROJECT_DIR$/pinyougou-parent-module/pinyougou-solr-util/pinyougou-solr-util.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springjms_consumer/springjms_consumer.iml" filepath="$PROJECT_DIR$/springjms_consumer/springjms_consumer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springjms_producer/springjms_producer.iml" filepath="$PROJECT_DIR$/springjms_producer/springjms_producer.iml" />
     </modules>
   </component>
 </project>
