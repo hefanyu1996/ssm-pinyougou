@@ -7,6 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="alicom-dysms-api" />
+        <module name="alicom-mns-receive-samples" />
+        <module name="aliyun-java-sdk-core" />
+        <module name="aliyun-java-sdk-dysmsapi" />
+        <module name="itcast_sms" />
         <module name="pinyougou-common" />
         <module name="pinyougou-content-interface" />
         <module name="pinyougou-content-service" />
@@ -24,10 +29,18 @@
         <module name="pinyougou-sellergoods-service" />
         <module name="pinyougou-shop-web" />
         <module name="pinyougou-solr-util" />
+        <module name="pinyougou-user-interface" />
+        <module name="pinyougou-user-service" />
+        <module name="pinyougou-user-web" />
         <module name="springjmsproducer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
+      <module name="alicom-dysms-api" target="1.5" />
+      <module name="alicom-mns-receive-samples" target="1.6" />
+      <module name="aliyun-java-sdk-core" target="1.6" />
+      <module name="aliyun-java-sdk-dysmsapi" target="1.6" />
+      <module name="itcast_sms" target="1.6" />
       <module name="pinyougou-common" target="8" />
       <module name="pinyougou-content-interface" target="8" />
       <module name="pinyougou-content-service" target="8" />
@@ -47,6 +60,10 @@
       <module name="pinyougou-sellergoods-service" target="8" />
       <module name="pinyougou-shop-web" target="8" />
       <module name="pinyougou-solr-util" target="8" />
+      <module name="pinyougou-user-interface" target="8" />
+      <module name="pinyougou-user-serivce" target="8" />
+      <module name="pinyougou-user-service" target="1.8" />
+      <module name="pinyougou-user-web" target="1.8" />
       <module name="pinyougousearchservice" target="8" />
       <module name="springjms_consumer" target="1.5" />
       <module name="springjms_producer" target="1.5" />

@@ -10,6 +10,10 @@
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-search-web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-sellergoods-service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-shop-web" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-user-interface" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-user-serivce" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-user-service" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-user-web" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -18,10 +22,16 @@
         <option value="$PROJECT_DIR$/pinyougou-parent-module/pom.xml" />
         <option value="$PROJECT_DIR$/springjms_producer/pom.xml" />
         <option value="$PROJECT_DIR$/springjms_consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/dysmsapi_demo_sdk__java/java/api_sdk/aliyun-java-sdk-core/pom.xml" />
+        <option value="$PROJECT_DIR$/dysmsapi_demo_sdk__java/java/api_sdk/aliyun-java-sdk-dysmsapi/pom.xml" />
+        <option value="$PROJECT_DIR$/dysmsapi_demo_sdk__java/java/api_demo/alicom-dysms-api/pom.xml" />
+        <option value="$PROJECT_DIR$/dysmsapi_demo_sdk__java/java/msg_demo/alicom-mns-receive-samples/pom.xml" />
+        <option value="$PROJECT_DIR$/itcast_sms/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/pinyougou-parent-module/pinyougou-user-serivce/pom.xml" />
         <option value="$PROJECT_DIR$/pinyougou-parent-module/springjms-producer/pom.xml" />
         <option value="$PROJECT_DIR$/springjms_consumer/pom.xml" />
         <option value="$PROJECT_DIR$/springjms_producer/pom.xml" />

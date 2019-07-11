@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/dysmsapi_demo_sdk__java/java/msg_demo/alicom-mns-receive-samples" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/itcast_sms" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-content-interface" charset="UTF-8" />
@@ -22,7 +24,10 @@
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-sellergoods-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-shop-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-solr-util" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/springjms-producer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-user-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-user-serivce" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pinyougou-parent-module/pinyougou-user-web" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
