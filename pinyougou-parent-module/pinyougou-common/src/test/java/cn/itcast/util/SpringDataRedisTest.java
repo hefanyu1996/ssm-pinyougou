@@ -21,12 +21,12 @@ public class SpringDataRedisTest {
     @Test
     public void test01() {
 
-
+/*
         Map itemCat = redisTemplate.boundHashOps("itemCat").entries();
         for (Object o : itemCat.keySet()) {
             System.out.println(o);
             System.out.println(itemCat.get(o));
-        }
+        }*/
 
 
 
