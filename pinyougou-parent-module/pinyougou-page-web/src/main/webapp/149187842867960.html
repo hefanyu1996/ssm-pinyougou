@@ -16,6 +16,7 @@
 
     <script type="text/javascript" src="plugins/angularjs/angular.min.js"></script>
     <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/service/itemService.js"></script>
     <script type="text/javascript" src="js/controller/itemController.js"></script>
 
     <script>
@@ -45,8 +46,8 @@
 
 </head>
 
-<body ng-app="pinyougou" ng-controller="itemController" ng-init="num=1;loadSku()">
-
+<body ng-app="pinyougou" ng-controller="itemController" ng-init="num=1;loadSku();test()">
+<!--<button ng-click="cookieTest()">测试按钮</button>-->
 <!--页面顶部 开始-->
 <div id="nav-bottom">
     <!--顶部-->
@@ -251,8 +252,6 @@
                     </div>
                 </div>
 
-
-{{specificationItems}}
                 <div class="clearfix choose">
                     <div id="specification" class="summary-wrap clearfix">
 
@@ -443,7 +442,7 @@
                         <div class="fl suits">
                             <ul class="suit-list">
                                 <li class="">
-                                    <div id="">
+                                    <div >
                                         <img src="img/_/dp01.png"/>
                                     </div>
                                     <i>Feless费勒斯VR</i>
@@ -452,21 +451,21 @@
                                     </label>
                                 </li>
                                 <li class="">
-                                    <div id=""><img src="img/_/dp02.png"/></div>
+                                    <div><img src="img/_/dp02.png"/></div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox" class="checkbox-pretty">
                                         <input type="checkbox"><span>50</span>
                                     </label>
                                 </li>
                                 <li class="">
-                                    <div id=""><img src="img/_/dp03.png"/></div>
+                                    <div><img src="img/_/dp03.png"/></div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox" class="checkbox-pretty">
                                         <input type="checkbox"><span>59</span>
                                     </label>
                                 </li>
                                 <li class="">
-                                    <div id=""><img src="img/_/dp04.png"/></div>
+                                    <div><img src="img/_/dp04.png"/></div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox" class="checkbox-pretty">
                                         <input type="checkbox"><span>99</span>

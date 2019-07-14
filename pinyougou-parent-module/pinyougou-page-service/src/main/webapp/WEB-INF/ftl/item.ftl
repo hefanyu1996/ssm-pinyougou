@@ -16,6 +16,7 @@
 
     <script type="text/javascript" src="plugins/angularjs/angular.min.js"></script>
     <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/service/itemService.js"></script>
     <script type="text/javascript" src="js/controller/itemController.js"></script>
 
     <script>
@@ -145,7 +146,7 @@
                 <#-- 获取json规格选项 -->
                 <#assign specificationList=goodsDesc.specificationItems?eval />
 
-                <#-- 规格&规格选项 -->{{specificationItems}}
+                <#-- 规格&规格选项 -->
                 <div class="clearfix choose">
                     <div id="specification" class="summary-wrap clearfix">
 

@@ -23,8 +23,10 @@
 		<div class="py-container">
 			<div class="shortcut">
 				<ul class="fl">
-					<li class="f-item">品优购欢迎您！</li>
-					<li class="f-item"><a href="/login/cas">请登录</a>&nbsp;&nbsp;&nbsp;<span><a href="#">免费注册</a></span></li>
+					<li class="f-item">品优购欢迎您！</li>&nbsp;&nbsp;&nbsp;
+                    <li class="f-item"><b>{{loginUsername=="anonymousUser"? "":loginUsername}}&nbsp;&nbsp;&nbsp;</b><span ng-if="checkLogin()"><a href="login.html">请登录</a></span>
+                        <span ng-if="!checkLogin()"><a href="logout/cas">退出</a></span>
+                        &nbsp;&nbsp;&nbsp;<span><a href="#">免费注册</a></span></li>
 				</ul>
 				<ul class="fr">
 					<li class="f-item">我的订单</li>
@@ -114,13 +116,13 @@
 					<a href="#none">清除下柜商品</a>
 				</div>
 				<div class="toolbar">
-					<div class="chosed">已选择<span>{{totalValue.totalNum==null ? 0:totalValue.totalNum}}</span>件商品</div>
+					<div class="chosed">已选择<span style="color: red">{{totalValue.totalNum}}</span>件商品</div>
 					<div class="sumprice">
-						<span><em>总价（不含运费） ：</em><i class="summoney">{{totalValue.totalMoney==null ? 0:totalValue.totalMoney}}</i></span>
+						<span><em>总价（不含运费） ：</em><i class="summoney">¥{{totalValue.totalMoney}}</i></span>
 						<!--<span><em>已节省：</em><i>-¥20.00</i></span>-->
 					</div>
 					<div class="sumbtn">
-						<a class="sum-btn" href="login.html" target="_blank">结算</a>
+						<a class="sum-btn" href="getOrderInfo.html" target="_blank">结算</a>
 					</div>
 				</div>
 			</div>

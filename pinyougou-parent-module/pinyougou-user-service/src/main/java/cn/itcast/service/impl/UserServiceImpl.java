@@ -1,6 +1,9 @@
 package cn.itcast.service.impl;
 
+import cn.itcast.dao.TbAddressMapper;
 import cn.itcast.dao.TbUserMapper;
+import cn.itcast.pojo.TbAddress;
+import cn.itcast.pojo.TbAddressExample;
 import cn.itcast.pojo.TbUser;
 import cn.itcast.pojo.TbUserExample;
 import cn.itcast.service.UserService;
@@ -203,5 +206,6 @@ public class UserServiceImpl implements UserService {
         return smsCode.equals(redisTemplate.boundHashOps("smsCode").get(phone));
 
     }
+
 
 }
