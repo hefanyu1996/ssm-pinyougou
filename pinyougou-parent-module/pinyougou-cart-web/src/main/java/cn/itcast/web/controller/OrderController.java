@@ -41,7 +41,8 @@ public class OrderController {
 	public PageResult  findPage(int page,int rows){			
 		return orderService.findPage(page, rows);
 	}
-	
+
+
 	/**
 	 * 增加
 	 * @param order
@@ -54,6 +55,7 @@ public class OrderController {
             order.setUserId(userId);//登录人
             order.setSourceType("2");//订单源 PC
             orderService.add(order);
+
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();

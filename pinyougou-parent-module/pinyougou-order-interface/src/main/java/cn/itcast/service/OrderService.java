@@ -2,7 +2,10 @@ package cn.itcast.service;
 import java.util.List;
 import cn.itcast.pojo.TbOrder;
 
+import cn.itcast.pojo.TbPayLog;
 import entity.PageResult;
+import entity.Result;
+
 /**
  * 服务层接口
  * @author Administrator
@@ -57,5 +60,21 @@ public interface OrderService {
 	 * @return
 	 */
 	public PageResult findPage(TbOrder order, int pageNum,int pageSize);
-	
+
+
+    /**
+     * 根据用户名查询支付日志
+     * @param userId
+     * @return
+     */
+    TbPayLog searchPayLogFromRedis(String userId);
+
+    /**
+     * 修改订单状态
+     * @param out_trade_no
+     * @param transaction_id
+     * @return
+     */
+    void updateOrderStatus(String out_trade_no,String transaction_id);
+
 }

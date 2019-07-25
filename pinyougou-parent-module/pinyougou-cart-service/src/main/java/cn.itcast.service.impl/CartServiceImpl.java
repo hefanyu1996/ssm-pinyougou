@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service(timeout = 100000)
+@Service(timeout = 10000)
 @Transactional
 public class CartServiceImpl implements CartService {
 
